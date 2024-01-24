@@ -1,13 +1,10 @@
-'use client'
-import { useState } from 'react';
+'use client';
+import { useState, useTransition } from 'react';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 
-
-import {
-  Button, Form,
-  Input, Select
-} from 'antd';
+import { Button, Form, Input, Select } from 'antd';
 import Link from 'next/link';
+import { loginUser } from '@/actions/login';
 
 const { Option } = Select;
 
@@ -19,18 +16,17 @@ interface DataNodeType {
 
 const RegisterForm = () => {
   const [form] = Form.useForm();
+  const [isPending, startTransition] = useTransition();
 
   const onFinish = (values: any) => {
-    console.log('Received values of form: ', values);
+    startTransition(() => loginUser(values));
   };
-
-  const [autoCompleteResult, setAutoCompleteResult] = useState<string[]>([]);
 
   return (
     <Form
       form={form}
       name='register'
-      onFinish={onFinish}
+      onFinish={loginUser}
       scrollToFirstError
       className='login-form flex flex-col w-full md:w-1/2 xl:w-1/3 gap-y-2 bg-white justify-center items-center shadow-lg !p-8'
     >
@@ -49,12 +45,12 @@ const RegisterForm = () => {
           prefix={<UserOutlined className='site-form-item-icon' />}
           placeholder='Email'
           className='!py-2.5'
+          disabled={isPending}
         />
       </Form.Item>
 
       <Form.Item
         name='password'
-        
         rules={[
           {
             required: true,
@@ -67,6 +63,7 @@ const RegisterForm = () => {
           className='!py-2.5'
           placeholder='Enter your password'
           prefix={<LockOutlined className='site-form-item-icon' />}
+          disabled={isPending}
         />
       </Form.Item>
 
@@ -95,6 +92,7 @@ const RegisterForm = () => {
           placeholder='Confirm Password'
           className='!py-2.5'
           prefix={<LockOutlined className='site-form-item-icon' />}
+          disabled={isPending}
         />
       </Form.Item>
 
@@ -103,6 +101,7 @@ const RegisterForm = () => {
           type='primary'
           className='w-full !py-2.5 !h-auto'
           htmlType='submit'
+          disabled={isPending}
         >
           Register
         </Button>

@@ -1,9 +1,14 @@
+import Header from '../components/layout/Header';
+
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div>
-      DashboardLayout
-      {children}
-    </div>
+    <>
+      <Header />
+      <div>
+        DashboardLayout
+        {children}
+      </div>
+    </>
   );
 };
 
