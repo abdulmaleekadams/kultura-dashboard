@@ -1,7 +1,10 @@
+'use client';
 import { Button, Popover } from 'antd';
 import CustomAvatar from '../CustomAvatar';
 import { Text } from '../Text';
 import { SettingOutlined } from '@ant-design/icons';
+import { AccountSettings } from './AccountSetting';
+import { useState } from 'react';
 
 const userData = {
   data: {
@@ -11,7 +14,10 @@ const userData = {
 };
 
 const CurrentUser = () => {
+  const [open, setOpen] = useState(false);
+
   const { data: user } = userData;
+
   const content = (
     <div className='flex flex-col'>
       <Text strong className='py-3 px-5'>
@@ -23,12 +29,14 @@ const CurrentUser = () => {
           block
           icon={<SettingOutlined />}
           type='text'
+          onClick={() => setOpen(true)}
         >
           Account Settings
         </Button>
       </div>
     </div>
   );
+
   return (
     <>
       <Popover
@@ -41,6 +49,7 @@ const CurrentUser = () => {
       >
         <CustomAvatar name={user?.name} />
       </Popover>
+      <AccountSettings opened={open} setOpened={setOpen} userId={user.name} />
     </>
   );
 };
