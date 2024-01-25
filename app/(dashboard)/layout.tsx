@@ -39,7 +39,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
         onCollapse={(collapsed, type) => {
           console.log(collapsed, type);
         }}
-        className='!fixed top-16 min-h-screen'
+        className='!fixed top-16 min-h-screen z-50'
       >
         <div className='demo-logo-vertical' />
         <Menu

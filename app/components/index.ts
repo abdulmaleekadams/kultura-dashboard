@@ -1,4 +1,20 @@
-export * from './layout/Header';
+import UpcomingEvents from './ui/Home/UpcomingEvents';
+import DashboardDealsChart from './ui/Home/DashboardDealsChart';
+import UpcomingEventsSkeleton from './skeletons/UpcomingEventsSkeleton';
+import ProjectCardSkeleton from './skeletons/ProjectCardSkeleton';
+import LatestActivitiesSkeleton from './skeletons/LatestActivitiesSkeleton';
+import KanbanColumnSkeleton from './skeletons/KanbanColumnSkeleton';
+import AccordionHeaderSkeleton from './skeletons/AccordionHeaderSkeleton';
+
+export {
+  UpcomingEvents,
+  DashboardDealsChart,
+  UpcomingEventsSkeleton,
+  ProjectCardSkeleton,
+  LatestActivitiesSkeleton,
+  KanbanColumnSkeleton,
+  AccordionHeaderSkeleton,
+};
 
 const Box8 = [
   {
