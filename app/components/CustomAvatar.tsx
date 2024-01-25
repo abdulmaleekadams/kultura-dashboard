@@ -7,13 +7,13 @@ type Props = {
 };
 
 const CustomAvatar = ({ name, customStyle, ...rest }: Props) => {
-
   return (
     <AntdAvatar
-      alt='Abdulmaleek Adams'
-      size={'small'}
+      alt={name}
+      size={'default'}
       className={`!bg-[#ac6803] !flex items-center justify-center border-none ${customStyle}`}
       {...rest}
+      
     >
       {getNameInitials(name)}
     </AntdAvatar>

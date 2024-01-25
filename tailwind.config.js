@@ -11,6 +11,9 @@ module.exports = {
   ],
   theme: {
     extend: {},
+    screens: {
+      'tablet': '992px',
+    }
   },
   plugins: [],
 };
