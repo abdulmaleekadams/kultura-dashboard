@@ -101,7 +101,7 @@ const mockEvents = [
 const UpcomingEvents = () => {
   return (
     <Col xs={24} sm={24} xl={8} style={{ height: '460px' }}>
-      UpcomingEvents
+      
       <Card
         style={{ height: '100%' }}
         headStyle={{ padding: '8px 16px' }}

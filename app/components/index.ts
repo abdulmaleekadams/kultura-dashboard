@@ -1,5 +1,6 @@
 import UpcomingEvents from './ui/Home/UpcomingEvents';
 import DashboardDealsChart from './ui/Home/DashboardDealsChart';
+import TotalCountCard from './ui/Home/TotalCountCard';
 import UpcomingEventsSkeleton from './skeletons/UpcomingEventsSkeleton';
 import ProjectCardSkeleton from './skeletons/ProjectCardSkeleton';
 import LatestActivitiesSkeleton from './skeletons/LatestActivitiesSkeleton';
@@ -14,6 +15,7 @@ export {
   LatestActivitiesSkeleton,
   KanbanColumnSkeleton,
   AccordionHeaderSkeleton,
+  TotalCountCard,
 };
 
 const Box8 = [
