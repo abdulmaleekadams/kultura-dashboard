@@ -52,7 +52,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
       </Sider>
       <Layout>
         <Header />
-        <Content style={{ margin: '24px 16px 0' }}>
+        <Content style={{ margin: '100px 16px 0' }}>
           <div
             style={{
               padding: 24,

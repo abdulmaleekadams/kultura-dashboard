@@ -70,13 +70,3 @@ export const mapDealsData = (
     .sort((a, b) => a.timeUnix - b.timeUnix);
 };
 
-// // Get the deal stage with the title "WON"
-//   const won = dealStages.find((stage) => stage.title === "WON");
-//   const wonDeals = mapDeals(won?.dealsAggregate, "Won");
-
-//   // Get the deal stage with the title "LOST"
-//   const lost = dealStages.find((stage) => stage.title === "LOST");
-//   const lostDeals = mapDeals(lost?.dealsAggregate, "Lost");
-
-//   // Combine the won and lost deals and sort them by time
-//   return [...wonDeals, ...lostDeals].sort((a, b) => a.timeUnix - b.timeUnix);
