@@ -4,7 +4,7 @@ import { UnorderedListOutlined } from '@ant-design/icons';
 import { Text } from '../../Text';
 import { Suspense } from 'react';
 import { LatestActivitiesSkeleton } from '../..';
-import { latestEvents } from '@/mockData';
+import { latestEvents } from '@/utils/mockData';
 import dayjs from 'dayjs';
 import CustomAvatar from '../../CustomAvatar';
 

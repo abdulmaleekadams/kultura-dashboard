@@ -5,7 +5,7 @@ type Props = {
   name: string;
   customStyle?: string;
   shape?: 'circle' | 'square';
-  size?: number;
+  size?: 'default' | 'large' | 'small';
   src?: string;
 };
 
@@ -13,18 +13,16 @@ const CustomAvatar = ({
   name,
   customStyle,
   shape,
-  size,
+  size ='default',
   src,
   ...rest
 }: Props) => {
-
-  
   return (
     <AntdAvatar
       alt={name}
       shape={shape}
       src={src}
-      size={'default'}
+      size={size}
       className={`!bg-[#ac6803] !flex items-center justify-center border-none ${customStyle}`}
       {...rest}
     >

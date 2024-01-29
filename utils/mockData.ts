@@ -400,3 +400,310 @@ export const latestEvents = [
     action: 'UPDATE',
   },
 ];
+
+export const companiesList = [
+  {
+    id: 1,
+    name: 'ABC Corporation',
+    avatarUrl: 'https://example.com/abc-corp-avatar',
+    dealsAggregate: {
+      sum: {
+        value: 75000,
+      },
+    },
+  },
+  {
+    id: 2,
+    name: 'XYZ Industries',
+    avatarUrl: 'https://example.com/xyz-industries-avatar',
+    dealsAggregate: {
+      sum: {
+        value: 60000,
+      },
+    },
+  },
+  {
+    id: 3,
+    name: 'Tech Innovators Inc.',
+    avatarUrl: 'https://example.com/tech-innovators-avatar',
+    dealsAggregate: {
+      sum: {
+        value: 90000,
+      },
+    },
+  },
+  {
+    id: 4,
+    name: 'Global Solutions Co.',
+    avatarUrl: 'https://example.com/global-solutions-avatar',
+    dealsAggregate: {
+      sum: {
+        value: 45000,
+      },
+    },
+  },
+  {
+    id: 5,
+    name: 'Green Energy Ltd.',
+    avatarUrl: 'https://example.com/green-energy-avatar',
+    dealsAggregate: {
+      sum: {
+        value: 55000,
+      },
+    },
+  },
+  {
+    id: 6,
+    name: 'Innovate Tech Group',
+    avatarUrl: 'https://example.com/innovate-tech-avatar',
+    dealsAggregate: {
+      sum: {
+        value: 70000,
+      },
+    },
+  },
+  {
+    id: 7,
+    name: 'Future Ventures Inc.',
+    avatarUrl: 'https://example.com/future-ventures-avatar',
+    dealsAggregate: {
+      sum: {
+        value: 80000,
+      },
+    },
+  },
+  {
+    id: 8,
+    name: 'Healthcare Solutions Ltd.',
+    avatarUrl: 'https://example.com/healthcare-solutions-avatar',
+    dealsAggregate: {
+      sum: {
+        value: 60000,
+      },
+    },
+  },
+  {
+    id: 9,
+    name: 'Digital Trends Corp.',
+    avatarUrl: 'https://example.com/digital-trends-avatar',
+    dealsAggregate: {
+      sum: {
+        value: 85000,
+      },
+    },
+  },
+  {
+    id: 10,
+    name: 'Finance Insights Co.',
+    avatarUrl: 'https://example.com/finance-insights-avatar',
+    dealsAggregate: {
+      sum: {
+        value: 95000,
+      },
+    },
+  },
+  {
+    id: 11,
+    name: 'Travel Explorers Ltd.',
+    avatarUrl: 'https://example.com/travel-explorers-avatar',
+    dealsAggregate: {
+      sum: {
+        value: 70000,
+      },
+    },
+  },
+  {
+    id: 12,
+    name: 'Food Innovations Inc.',
+    avatarUrl: 'https://example.com/food-innovations-avatar',
+    dealsAggregate: {
+      sum: {
+        value: 50000,
+      },
+    },
+  },
+  {
+    id: 13,
+    name: 'Space Tech Solutions',
+    avatarUrl: 'https://example.com/space-tech-avatar',
+    dealsAggregate: {
+      sum: {
+        value: 80000,
+      },
+    },
+  },
+  {
+    id: 14,
+    name: 'Automotive Innovators Co.',
+    avatarUrl: 'https://example.com/automotive-innovators-avatar',
+    dealsAggregate: {
+      sum: {
+        value: 60000,
+      },
+    },
+  },
+  {
+    id: 15,
+    name: 'Fashion Trends Group',
+    avatarUrl: 'https://example.com/fashion-trends-avatar',
+    dealsAggregate: {
+      sum: {
+        value: 70000,
+      },
+    },
+  },
+  {
+    id: 16,
+    name: 'Art and Design Studios',
+    avatarUrl: 'https://example.com/art-and-design-avatar',
+    dealsAggregate: {
+      sum: {
+        value: 55000,
+      },
+    },
+  },
+  {
+    id: 17,
+    name: 'Renewable Energy Solutions',
+    avatarUrl: 'https://example.com/renewable-energy-avatar',
+    dealsAggregate: {
+      sum: {
+        value: 75000,
+      },
+    },
+  },
+  {
+    id: 18,
+    name: 'Startup Hub Inc.',
+    avatarUrl: 'https://example.com/startup-hub-avatar',
+    dealsAggregate: {
+      sum: {
+        value: 65000,
+      },
+    },
+  },
+  {
+    id: 19,
+    name: 'Music Productions Ltd.',
+    avatarUrl: 'https://example.com/music-productions-avatar',
+    dealsAggregate: {
+      sum: {
+        value: 90000,
+      },
+    },
+  },
+  {
+    id: 20,
+    name: 'AI Innovations Corp.',
+    avatarUrl: 'https://example.com/ai-innovations-avatar',
+    dealsAggregate: {
+      sum: {
+        value: 80000,
+      },
+    },
+  },
+];
+
+export const salesOwner = [
+  {
+    id: 1,
+    name: 'John Doe',
+    avatarUrl: 'https://example.com/john-doe-avatar',
+  },
+  {
+    id: 2,
+    name: 'Jane Smith',
+    avatarUrl: 'https://example.com/jane-smith-avatar',
+  },
+  {
+    id: 3,
+    name: 'Bob Johnson',
+    avatarUrl: 'https://example.com/bob-johnson-avatar',
+  },
+  {
+    id: 4,
+    name: 'Alice Williams',
+    avatarUrl: 'https://example.com/alice-williams-avatar',
+  },
+  {
+    id: 5,
+    name: 'David Lee',
+    avatarUrl: 'https://example.com/david-lee-avatar',
+  },
+  {
+    id: 6,
+    name: 'Emily White',
+    avatarUrl: 'https://example.com/emily-white-avatar',
+  },
+  {
+    id: 7,
+    name: 'Michael Brown',
+    avatarUrl: 'https://example.com/michael-brown-avatar',
+  },
+  {
+    id: 8,
+    name: 'Grace Taylor',
+    avatarUrl: 'https://example.com/grace-taylor-avatar',
+  },
+  {
+    id: 9,
+    name: 'Chris Anderson',
+    avatarUrl: 'https://example.com/chris-anderson-avatar',
+  },
+  {
+    id: 10,
+    name: 'Sophia Clark',
+    avatarUrl: 'https://example.com/sophia-clark-avatar',
+  },
+  {
+    id: 11,
+    name: 'Robert Davis',
+    avatarUrl: 'https://example.com/robert-davis-avatar',
+  },
+  {
+    id: 12,
+    name: 'Olivia Harris',
+    avatarUrl: 'https://example.com/olivia-harris-avatar',
+  },
+  {
+    id: 13,
+    name: 'Daniel Miller',
+    avatarUrl: 'https://example.com/daniel-miller-avatar',
+  },
+  {
+    id: 14,
+    name: 'Ava Martin',
+    avatarUrl: 'https://example.com/ava-martin-avatar',
+  },
+  {
+    id: 15,
+    name: 'William Wilson',
+    avatarUrl: 'https://example.com/william-wilson-avatar',
+  },
+  {
+    id: 16,
+    name: 'Ella Jackson',
+    avatarUrl: 'https://example.com/ella-jackson-avatar',
+  },
+  {
+    id: 17,
+    name: 'Liam Moore',
+    avatarUrl: 'https://example.com/liam-moore-avatar',
+  },
+  {
+    id: 18,
+    name: 'Mia Johnson',
+    avatarUrl: 'https://example.com/mia-johnson-avatar',
+  },
+  {
+    id: 19,
+    name: 'James Smith',
+    avatarUrl: 'https://example.com/james-smith-avatar',
+  },
+  {
+    id: 20,
+    name: 'Emma Taylor',
+    avatarUrl: 'https://example.com/emma-taylor-avatar',
+  },
+];
+
