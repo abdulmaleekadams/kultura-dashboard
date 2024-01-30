@@ -1,6 +1,10 @@
+import TasksList from "@/app/components/ui/Tasks/TasksList"
+
 const TasksPage = () => {
   return (
-    <div>TasksPage</div>
+    <div>
+      <TasksList />
+    </div>
   )
 }
 

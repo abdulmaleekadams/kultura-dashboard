@@ -180,7 +180,7 @@ const CompanyList = ({
           <Button
             id={id}
             size='small'
-            className='flex items-center justify-center !h-8'
+            className='flex items-center justify-center !h-[30px]'
             aria-label='edit'
           >
             <EditOutlined />
@@ -188,7 +188,7 @@ const CompanyList = ({
           <Button
             id={id}
             size='small'
-            className='flex items-center justify-center !h-8 !border-red-400 !text-red-400 hover:!border-red-500 hover:!text-red-500'
+            className='flex items-center justify-center !border-red-400 !text-red-400 hover:!border-red-500 hover:!text-red-500 !h-[30px]'
             aria-label='Delete'
           >
             <DeleteOutlined />

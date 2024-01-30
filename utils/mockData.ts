@@ -707,3 +707,409 @@ export const salesOwner = [
   },
 ];
 
+export const tasksStages = [
+  {
+    id: 123,
+    title: 'Todo',
+  },
+  {
+    id: 124,
+    title: 'In Progress',
+  },
+  {
+    id: 120,
+    title: 'In review'
+  },
+  {
+    id: 125,
+    title: 'Completed',
+  },
+];
+
+export const tasksList = [
+  {
+    id: '1',
+    title: 'Design Landing Page',
+    description: 'Create a visually appealing landing page for the website.',
+    dueDate: '2024-02-01',
+    completed: false,
+    stageId: 123,
+    users: [
+      {
+        id: 101,
+        name: 'John Doe',
+        avatarUrl: 'https://example.com/john-doe-avatar',
+      },
+      {
+        id: 102,
+        name: 'Jane Smith',
+        avatarUrl: 'https://example.com/jane-smith-avatar',
+      },
+    ],
+    createdAt: '2024-01-15T10:30:00Z',
+    updatedAt: '2024-01-20T14:45:00Z',
+  },
+  {
+    id: '2',
+    title: 'Implement User Authentication',
+    description:
+      'Integrate user authentication functionality into the application.',
+    dueDate: '2024-02-10',
+    completed: true,
+    stageId: 124,
+    users: [
+      {
+        id: 103,
+        name: 'Bob Johnson',
+        avatarUrl: 'https://example.com/bob-johnson-avatar',
+      },
+    ],
+    createdAt: '2024-01-18T08:15:00Z',
+    updatedAt: '2024-02-05T09:20:00Z',
+  },
+  {
+    id: '3',
+    title: 'Write API Documentation',
+    description:
+      'Document the API endpoints and usage for external developers.',
+    dueDate: '2024-02-28',
+    completed: false,
+    stageId: 125,
+    users: [
+      {
+        id: 104,
+        name: 'Alice Williams',
+        avatarUrl: 'https://example.com/alice-williams-avatar',
+      },
+      {
+        id: 105,
+        name: 'David Lee',
+        avatarUrl: 'https://example.com/david-lee-avatar',
+      },
+    ],
+    createdAt: '2024-01-22T12:00:00Z',
+    updatedAt: '2024-02-15T11:10:00Z',
+  },
+  {
+    id: '4',
+    title: 'Bug Fixing - Homepage',
+    description: 'Address and fix bugs on the homepage of the application.',
+    dueDate: '2024-03-05',
+    completed: false,
+    stageId: 123,
+    users: [
+      {
+        id: 106,
+        name: 'Ella Jackson',
+        avatarUrl: 'https://example.com/ella-jackson-avatar',
+      },
+    ],
+    createdAt: '2024-02-01T09:45:00Z',
+    updatedAt: '2024-02-20T13:30:00Z',
+  },
+  {
+    id: '5',
+    title: 'Content Creation for Blog',
+    description: 'Generate engaging content for the company blog.',
+    dueDate: '2024-03-15',
+    completed: false,
+    stageId: 124,
+    users: [
+      {
+        id: 107,
+        name: 'Liam Moore',
+        avatarUrl: 'https://example.com/liam-moore-avatar',
+      },
+    ],
+    createdAt: '2024-02-10T14:20:00Z',
+    updatedAt: '2024-03-01T11:45:00Z',
+  },
+  {
+    id: '6',
+    title: 'Client Meeting - Project Review',
+    description:
+      'Conduct a meeting with the client to review project progress.',
+    dueDate: '2024-03-25',
+    completed: false,
+    stageId: 125,
+    users: [
+      {
+        id: 108,
+        name: 'Mia Johnson',
+        avatarUrl: 'https://example.com/mia-johnson-avatar',
+      },
+    ],
+    createdAt: '2024-02-15T11:00:00Z',
+    updatedAt: '2024-03-05T15:15:00Z',
+  },
+  {
+    id: '7',
+    title: 'Feature Enhancement - User Dashboard',
+    description:
+      'Enhance features on the user dashboard for improved user experience.',
+    dueDate: '2024-04-05',
+    completed: false,
+    stageId: 123,
+    users: [
+      {
+        id: 109,
+        name: 'James Smith',
+        avatarUrl: 'https://example.com/james-smith-avatar',
+      },
+    ],
+    createdAt: '2024-03-01T10:30:00Z',
+    updatedAt: '2024-03-20T12:40:00Z',
+  },
+  {
+    id: '8',
+    title: 'Quality Assurance Testing',
+    description:
+      'Perform thorough QA testing on the application before release.',
+    dueDate: '2024-04-15',
+    completed: false,
+    stageId: 124,
+    users: [
+      {
+        id: 110,
+        name: 'Emma Taylor',
+        avatarUrl: 'https://example.com/emma-taylor-avatar',
+      },
+    ],
+    createdAt: '2024-03-05T13:15:00Z',
+    updatedAt: '2024-03-25T09:50:00Z',
+  },
+  {
+    id: '9',
+    title: 'Social Media Campaign Launch',
+    description:
+      'Launch a new social media campaign to increase brand visibility.',
+    dueDate: '2024-05-01',
+    completed: false,
+    stageId: 125,
+    users: [
+      {
+        id: 111,
+        name: 'Olivia Harris',
+        avatarUrl: 'https://example.com/olivia-harris-avatar',
+      },
+    ],
+    createdAt: '2024-03-20T14:45:00Z',
+    updatedAt: '2024-04-05T11:30:00Z',
+  },
+  {
+    id: '10',
+    title: 'Data Analysis - Monthly Reports',
+    description:
+      'Conduct data analysis for generating monthly performance reports.',
+    dueDate: '2024-05-15',
+    completed: false,
+    stageId: 123,
+    users: [
+      {
+        id: 112,
+        name: 'Daniel Miller',
+        avatarUrl: 'https://example.com/daniel-miller-avatar',
+      },
+    ],
+    createdAt: '2024-04-01T11:30:00Z',
+    updatedAt: '2024-04-20T13:20:00Z',
+  },
+  {
+    id: '11',
+    title: 'Product Demo - New Features',
+    description:
+      'Conduct a live demonstration of new product features for stakeholders.',
+    dueDate: '2024-06-01',
+    completed: false,
+    stageId: 124,
+    users: [
+      {
+        id: 113,
+        name: 'Ava Martin',
+        avatarUrl: 'https://example.com/ava-martin-avatar',
+      },
+    ],
+    createdAt: '2024-04-05T09:00:00Z',
+    updatedAt: '2024-04-25T14:10:00Z',
+  },
+  {
+    id: '12',
+    title: 'Collaboration Meeting - Cross-Functional Teams',
+    description:
+      'Host a meeting to foster collaboration among cross-functional teams.',
+    dueDate: '2024-06-15',
+    completed: false,
+    stageId: 125,
+    users: [
+      {
+        id: 114,
+        name: 'William Wilson',
+        avatarUrl: 'https://example.com/william-wilson-avatar',
+      },
+    ],
+    createdAt: '2024-04-20T13:45:00Z',
+    updatedAt: '2024-05-05T10:30:00Z',
+  },
+  {
+    id: '13',
+    title: 'Community Engagement Event',
+    description:
+      'Organize an event to engage with the local community and gather feedback.',
+    dueDate: '2024-07-01',
+    completed: false,
+    stageId: 123,
+    users: [
+      {
+        id: 115,
+        name: 'Ella Jackson',
+        avatarUrl: 'https://example.com/ella-jackson-avatar',
+      },
+    ],
+    createdAt: '2024-05-01T14:20:00Z',
+    updatedAt: '2024-05-20T08:50:00Z',
+  },
+  {
+    id: '14',
+    title: 'Website Maintenance',
+    description: 'Perform routine maintenance tasks on the company website.',
+    dueDate: '2024-07-15',
+    completed: false,
+    stageId: 124,
+    users: [
+      {
+        id: 116,
+        name: 'Liam Moore',
+        avatarUrl: 'https://example.com/liam-moore-avatar',
+      },
+    ],
+    createdAt: '2024-05-05T11:45:00Z',
+    updatedAt: '2024-05-25T09:15:00Z',
+  },
+  {
+    id: '15',
+    title: 'Training Session - New Software Release',
+    description:
+      'Conduct a training session for users on the new software release.',
+    dueDate: '2024-08-01',
+    completed: false,
+    stageId: 125,
+    users: [
+      {
+        id: 117,
+        name: 'Mia Johnson',
+        avatarUrl: 'https://example.com/mia-johnson-avatar',
+      },
+    ],
+    createdAt: '2024-05-20T12:30:00Z',
+    updatedAt: '2024-06-05T15:40:00Z',
+  },
+  {
+    id: '16',
+    title: 'Strategic Planning Session',
+    description:
+      'Conduct a strategic planning session for the upcoming quarter.',
+    dueDate: '2024-08-15',
+    completed: false,
+    stageId: 123,
+    users: [
+      {
+        id: 118,
+        name: 'James Smith',
+        avatarUrl: 'https://example.com/james-smith-avatar',
+      },
+    ],
+    createdAt: '2024-06-01T10:00:00Z',
+    updatedAt: '2024-06-20T14:50:00Z',
+  },
+  {
+    id: '17',
+    title: 'Product Launch Event',
+    description:
+      'Organize an event to launch a new product and gather customer feedback.',
+    dueDate: '2024-09-01',
+    completed: false,
+    stageId: 124,
+    users: [
+      {
+        id: 119,
+        name: 'Emma Taylor',
+        avatarUrl: 'https://example.com/emma-taylor-avatar',
+      },
+    ],
+    createdAt: '2024-06-15T11:30:00Z',
+    updatedAt: '2024-07-01T09:20:00Z',
+  },
+  {
+    id: '18',
+    title: 'Data Security Audit',
+    description:
+      'Conduct an audit to assess and enhance data security measures.',
+    dueDate: '2024-09-15',
+    completed: false,
+    stageId: 125,
+    users: [
+      {
+        id: 120,
+        name: 'Olivia Harris',
+        avatarUrl: 'https://example.com/olivia-harris-avatar',
+      },
+    ],
+    createdAt: '2024-07-01T13:15:00Z',
+    updatedAt: '2024-07-20T11:40:00Z',
+  },
+  {
+    id: '19',
+    title: 'Content Marketing Strategy',
+    description:
+      'Develop a comprehensive content marketing strategy for the next quarter.',
+    dueDate: '2024-10-01',
+    completed: false,
+    stageId: 123,
+    users: [
+      {
+        id: 121,
+        name: 'Daniel Miller',
+        avatarUrl: 'https://example.com/daniel-miller-avatar',
+      },
+    ],
+    createdAt: '2024-07-20T14:45:00Z',
+    updatedAt: '2024-08-05T10:30:00Z',
+  },
+  {
+    id: '20',
+    title: 'Customer Feedback Survey',
+    description:
+      'Create and distribute a customer feedback survey to gather insights.',
+    dueDate: '2024-10-15',
+    completed: false,
+    stageId: 124,
+    users: [
+      {
+        id: 122,
+        name: 'Ava Martin',
+        avatarUrl: 'https://example.com/ava-martin-avatar',
+      },
+    ],
+    createdAt: '2024-08-01T11:30:00Z',
+    updatedAt: '2024-08-20T13:20:00Z',
+  },
+  {
+    id: '21',
+    title: 'Customer Feedback Survey',
+    description:
+      'Create and distribute a customer feedback survey to gather insights.',
+    dueDate: '2024-01-31',
+    completed: false,
+    stageId: null,
+    users: [
+      {
+        id: 122,
+        name: 'Ava Martin',
+        avatarUrl: 'https://example.com/ava-martin-avatar',
+      },
+    ],
+    createdAt: '2024-08-01T11:30:00Z',
+    updatedAt: '2024-08-20T13:20:00Z',
+  },
+  // Add more tasks with meaningful titles as needed
+];

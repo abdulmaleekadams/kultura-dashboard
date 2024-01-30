@@ -3,24 +3,9 @@ import { MoreOutlined, PlusOutlined } from '@ant-design/icons';
 
 const KanbanColumnSkeleton = ({ children }: React.PropsWithChildren) => {
   return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        padding: '0 16px',
-      }}
-    >
-      <div
-        style={{
-          padding: '12px',
-        }}
-      >
-        <Space
-          style={{
-            width: '100%',
-            justifyContent: 'space-between',
-          }}
-        >
+    <div className='flex flex-col px-4'>
+      <div className='p-3'>
+        <Space className='justify-between w-[100%]'>
           <Skeleton.Button size='small' style={{ width: '125px' }} />
           <Button
             disabled
@@ -44,16 +29,7 @@ const KanbanColumnSkeleton = ({ children }: React.PropsWithChildren) => {
           borderRadius: '4px',
         }}
       >
-        <div
-          style={{
-            marginTop: '12px',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '8px',
-          }}
-        >
-          {children}
-        </div>
+        <div className='flex flex-col gap-2 mt-3'>{children}</div>
       </div>
     </div>
   );

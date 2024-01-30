@@ -12,8 +12,15 @@ module.exports = {
   theme: {
     extend: {},
     screens: {
-      'tablet': '992px',
-    }
+      tablet: '992px',
+    },
+    width: {
+      'board': 'calc(100% + 64px)',
+    },
+    height: {
+      'board': 'calc(100vh - 64px)',
+    },
+
   },
   plugins: [],
 };

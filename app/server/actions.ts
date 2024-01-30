@@ -1,10 +1,9 @@
 'use server';
 
-import { NextRequest } from 'next/server';
-
-export const createCompany = async (values) => {
-  
-
+export const createCompany = async (values: any) => {
   console.log(values);
-  
+};
+
+export const deleteCompany = async (id: string) => {
+  console.log(id);
 };

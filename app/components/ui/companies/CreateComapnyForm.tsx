@@ -12,15 +12,21 @@ const CreateComapnyForm = ({
 }: any) => {
   const onFinish = async (values: any) => {
     try {
+      setDisableCreateBtn(true);
       await createCompany(values);
       toast.success('New Company Created Successfully');
       form.resetFields();
     } catch (error) {
       console.log(error);
+    } finally {
+      setDisableCreateBtn(false);
     }
   };
 
   const [form] = Form.useForm();
+
+  const [disableCreateBtn, setDisableCreateBtn] = useState(false);
+
   return (
     <Modal
       width={512}
@@ -32,6 +38,7 @@ const CreateComapnyForm = ({
       }}
       onOk={form.submit}
       okText='Create'
+      okButtonProps={{ disabled: disableCreateBtn }}
     >
       <Form
         form={form}
