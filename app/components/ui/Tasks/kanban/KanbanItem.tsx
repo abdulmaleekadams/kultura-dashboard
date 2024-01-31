@@ -26,15 +26,13 @@ const KanbanItem = ({ children, id, data }: React.PropsWithChildren<Props>) => {
           active?.id ? 'opacity-50' : 'opacity-100'
         } rounded-lg relative cursor-grab`}
       >
-        {active?.id && (
-          <DragOverlay zIndex={1000}>
-            <div className='rounded-lg shadow-lg cursor-grabbing'>
-            {children}
-            </div>
-          </DragOverlay>
-        )}
         {children}
       </div>
+      {active?.id === id && (
+        <DragOverlay zIndex={1000}>
+          <div className='rounded-lg shadow-lg cursor-grabbing'>{children}</div>
+        </DragOverlay>
+      )}
     </div>
   );
 };

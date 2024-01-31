@@ -18,3 +18,7 @@ body{
   /* background: rgb(6, 31, 18); */
   /* color: white !important; */
 }
+
+.overflow-y-unset{
+  overflow-y: unset;
+}

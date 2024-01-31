@@ -54,7 +54,7 @@ const KanbanColumn = ({
       </div>
       <div
         className={`flex-1 ${
-          active ? 'overflow-y-auto' : 'overflow-y-scroll'
+          active ? 'overflow-y-unset' : 'overflow-y-auto'
         } border-2 border-dashed ${
           isOver ? 'border-[#000040]' : 'border-transparent'
         } rounded`}
