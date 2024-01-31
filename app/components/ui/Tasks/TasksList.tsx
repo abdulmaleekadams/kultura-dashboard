@@ -59,17 +59,20 @@ const TasksList = ({ children }: React.PropsWithChildren) => {
     // Find the index of the task in the original tasks array
     const taskIndex = tasks.findIndex((task) => task.id === taskId);
 
+    console.log(stageId);
+
     if (taskIndex !== -1) {
-      tasks[taskIndex].stageId = Number(stageId);
+      tasks[taskIndex].stageId = stageId as string;
       setTasks([...tasks]);
     }
   };
+
   return (
     <>
       <KanbanBoardConatainer>
         <KanbanBoard onDragEnd={handleOnDragEnd}>
           <KanbanColumn
-            id='unnassigned'
+            id='unassigned'
             title={'unassigned'}
             count={taskStages.unassignedStage.length || 0}
             onAddClick={() => handleAddCard({ stageId: 'unassigned' })}

@@ -709,19 +709,19 @@ export const salesOwner = [
 
 export const tasksStages = [
   {
-    id: 123,
+    id: '123',
     title: 'Todo',
   },
   {
-    id: 124,
+    id: '124',
     title: 'In Progress',
   },
   {
-    id: 120,
+    id: '120',
     title: 'In review'
   },
   {
-    id: 125,
+    id: '125',
     title: 'Completed',
   },
 ];
@@ -733,7 +733,7 @@ export const tasksList = [
     description: 'Create a visually appealing landing page for the website.',
     dueDate: '2024-02-01',
     completed: false,
-    stageId: 123,
+    stageId: '123',
     users: [
       {
         id: 101,
@@ -756,7 +756,7 @@ export const tasksList = [
       'Integrate user authentication functionality into the application.',
     dueDate: '2024-02-10',
     completed: true,
-    stageId: 124,
+    stageId: '124',
     users: [
       {
         id: 103,
@@ -774,7 +774,7 @@ export const tasksList = [
       'Document the API endpoints and usage for external developers.',
     dueDate: '2024-02-28',
     completed: false,
-    stageId: 125,
+    stageId: '125',
     users: [
       {
         id: 104,
@@ -796,7 +796,7 @@ export const tasksList = [
     description: 'Address and fix bugs on the homepage of the application.',
     dueDate: '2024-03-05',
     completed: false,
-    stageId: 123,
+    stageId: '123',
     users: [
       {
         id: 106,
@@ -813,7 +813,7 @@ export const tasksList = [
     description: 'Generate engaging content for the company blog.',
     dueDate: '2024-03-15',
     completed: false,
-    stageId: 124,
+    stageId: '124',
     users: [
       {
         id: 107,
@@ -831,7 +831,7 @@ export const tasksList = [
       'Conduct a meeting with the client to review project progress.',
     dueDate: '2024-03-25',
     completed: false,
-    stageId: 125,
+    stageId: '125',
     users: [
       {
         id: 108,
@@ -849,7 +849,7 @@ export const tasksList = [
       'Enhance features on the user dashboard for improved user experience.',
     dueDate: '2024-04-05',
     completed: false,
-    stageId: 123,
+    stageId: '123',
     users: [
       {
         id: 109,
@@ -867,7 +867,7 @@ export const tasksList = [
       'Perform thorough QA testing on the application before release.',
     dueDate: '2024-04-15',
     completed: false,
-    stageId: 124,
+    stageId: '124',
     users: [
       {
         id: 110,
@@ -903,7 +903,7 @@ export const tasksList = [
       'Conduct data analysis for generating monthly performance reports.',
     dueDate: '2024-05-15',
     completed: false,
-    stageId: 123,
+    stageId: '123',
     users: [
       {
         id: 112,
@@ -921,7 +921,7 @@ export const tasksList = [
       'Conduct a live demonstration of new product features for stakeholders.',
     dueDate: '2024-06-01',
     completed: false,
-    stageId: 124,
+    stageId: '124',
     users: [
       {
         id: 113,
@@ -957,7 +957,7 @@ export const tasksList = [
       'Organize an event to engage with the local community and gather feedback.',
     dueDate: '2024-07-01',
     completed: false,
-    stageId: 123,
+    stageId: '123',
     users: [
       {
         id: 115,
@@ -974,7 +974,7 @@ export const tasksList = [
     description: 'Perform routine maintenance tasks on the company website.',
     dueDate: '2024-07-15',
     completed: false,
-    stageId: 124,
+    stageId: '124',
     users: [
       {
         id: 116,
@@ -1010,7 +1010,7 @@ export const tasksList = [
       'Conduct a strategic planning session for the upcoming quarter.',
     dueDate: '2024-08-15',
     completed: false,
-    stageId: 123,
+    stageId: '123',
     users: [
       {
         id: 118,
@@ -1028,7 +1028,7 @@ export const tasksList = [
       'Organize an event to launch a new product and gather customer feedback.',
     dueDate: '2024-09-01',
     completed: false,
-    stageId: 124,
+    stageId: '124',
     users: [
       {
         id: 119,
@@ -1046,7 +1046,7 @@ export const tasksList = [
       'Conduct an audit to assess and enhance data security measures.',
     dueDate: '2024-09-15',
     completed: false,
-    stageId: 125,
+    stageId: '125',
     users: [
       {
         id: 120,
@@ -1064,7 +1064,7 @@ export const tasksList = [
       'Develop a comprehensive content marketing strategy for the next quarter.',
     dueDate: '2024-10-01',
     completed: false,
-    stageId: 123,
+    stageId: '123',
     users: [
       {
         id: 121,
@@ -1082,7 +1082,7 @@ export const tasksList = [
       'Create and distribute a customer feedback survey to gather insights.',
     dueDate: '2024-10-15',
     completed: false,
-    stageId: 124,
+    stageId: '124',
     users: [
       {
         id: 122,
