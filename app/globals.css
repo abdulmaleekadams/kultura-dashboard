@@ -22,3 +22,10 @@ body{
 .overflow-y-unset{
   overflow-y: unset;
 }
+
+.hide-alt {
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+}
+

@@ -10,6 +10,8 @@ import { tasksStages, tasksList } from '@/utils/mockData';
 import { ProjectCardMemo } from './kanban/card';
 import { KanbanAddCardButton } from './kanban/KanbabAddCardButton';
 import { DragEndEvent } from '@dnd-kit/core';
+import CreateTask from './CreateTask';
+import toast from 'react-hot-toast';
 
 type Props = {};
 
@@ -43,7 +45,24 @@ const TasksList = ({ children }: React.PropsWithChildren) => {
     };
   }, [stages, tasks]);
 
-  const handleAddCard = (args: { stageId: string }) => {};
+  const [openCreateTaskModal, setOpenCreateTaskModal] = useState<{
+    openForm: boolean;
+    stageId: null | string;
+    stageTitle: string | undefined;
+  }>({
+    openForm: false,
+    stageId: null,
+    stageTitle: '',
+  });
+
+  const handleAddCard = (args: { stageId: string; stageTitle: string }) => {
+    setOpenCreateTaskModal({
+      ...openCreateTaskModal,
+      openForm: true,
+      stageId: args.stageId,
+      stageTitle: args.stageTitle,
+    });
+  };
 
   const handleOnDragEnd = (e: DragEndEvent) => {
     let stageId = e.over?.id as undefined | string | null;
@@ -67,6 +86,18 @@ const TasksList = ({ children }: React.PropsWithChildren) => {
     }
   };
 
+  const deleteItemById = (id: string): void => {
+    // Find the index of the task in the original tasks array
+    const taskIndex = tasks.findIndex((task) => task.id === id);
+
+    if (taskIndex !== -1) {
+      // Remove the task at the found index
+      tasks.splice(taskIndex, 1);
+      setTasks([...tasks]);
+      toast.success('Task Successfully Deleted')
+    }
+  };
+
   return (
     <>
       <KanbanBoardConatainer>
@@ -75,7 +106,9 @@ const TasksList = ({ children }: React.PropsWithChildren) => {
             id='unassigned'
             title={'unassigned'}
             count={taskStages.unassignedStage.length || 0}
-            onAddClick={() => handleAddCard({ stageId: 'unassigned' })}
+            onAddClick={() =>
+              handleAddCard({ stageId: 'unassigned', stageTitle: 'unassigned' })
+            }
           >
             {taskStages.unassignedStage.map((task) => (
               <KanbanItem
@@ -86,6 +119,7 @@ const TasksList = ({ children }: React.PropsWithChildren) => {
                 <ProjectCardMemo
                   {...task}
                   dueDate={task.dueDate || undefined}
+                  deleteHandler={deleteItemById}
                 />
               </KanbanItem>
             ))}
@@ -94,6 +128,7 @@ const TasksList = ({ children }: React.PropsWithChildren) => {
                 onClick={() =>
                   handleAddCard({
                     stageId: 'unassigned',
+                    stageTitle: 'unassigned',
                   })
                 }
               />
@@ -107,7 +142,10 @@ const TasksList = ({ children }: React.PropsWithChildren) => {
                 title={column.title}
                 count={column.tasks.length}
                 onAddClick={() =>
-                  handleAddCard({ stageId: column.id.toString() })
+                  handleAddCard({
+                    stageId: column.id.toString(),
+                    stageTitle: column.title,
+                  })
                 }
               >
                 {column.tasks.map((task) => {
@@ -116,6 +154,7 @@ const TasksList = ({ children }: React.PropsWithChildren) => {
                       <ProjectCardMemo
                         {...task}
                         dueDate={task.dueDate || undefined}
+                        deleteHandler={deleteItemById}
                       />
                     </KanbanItem>
                   );
@@ -125,6 +164,7 @@ const TasksList = ({ children }: React.PropsWithChildren) => {
                     onClick={() =>
                       handleAddCard({
                         stageId: column.id.toString(),
+                        stageTitle: column.title,
                       })
                     }
                   />
@@ -134,7 +174,12 @@ const TasksList = ({ children }: React.PropsWithChildren) => {
           })}
         </KanbanBoard>
       </KanbanBoardConatainer>
-      {children}
+      {openCreateTaskModal && (
+        <CreateTask
+          openCreateTaskModal={openCreateTaskModal}
+          setOpenCreateTaskModal={setOpenCreateTaskModal}
+        />
+      )}
     </>
   );
 };

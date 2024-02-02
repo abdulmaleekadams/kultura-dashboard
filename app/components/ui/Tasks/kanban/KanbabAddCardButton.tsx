@@ -4,7 +4,6 @@ import { PlusSquareOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 import { Text } from '@/app/components/Text';
 
-
 interface Props {
   onClick: () => void;
 }

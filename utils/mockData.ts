@@ -1113,3 +1113,46 @@ export const tasksList = [
   },
   // Add more tasks with meaningful titles as needed
 ];
+
+export const users = [
+  {
+    id: 1,
+    name: 'John Doe',
+    email: 'john.doe@example.com',
+    avatarUrl: 'https://example.com/john-doe-avatar',
+    createdAt: '2022-01-01T10:00:00Z',
+    updatedAt: '2022-01-10T15:30:00Z',
+  },
+  {
+    id: 2,
+    name: 'Jane Smith',
+    email: 'jane.smith@example.com',
+    avatarUrl: 'https://example.com/jane-smith-avatar',
+    createdAt: '2022-01-05T12:45:00Z',
+    updatedAt: '2022-01-15T09:20:00Z',
+  },
+  {
+    id: 3,
+    name: 'Bob Johnson',
+    email: 'bob.johnson@example.com',
+    avatarUrl: 'https://example.com/bob-johnson-avatar',
+    createdAt: '2022-01-12T08:30:00Z',
+    updatedAt: '2022-01-20T14:15:00Z',
+  },
+  {
+    id: 4,
+    name: 'Alice Williams',
+    email: 'alice.williams@example.com',
+    avatarUrl: 'https://example.com/alice-williams-avatar',
+    createdAt: '2022-01-18T11:15:00Z',
+    updatedAt: '2022-01-25T10:10:00Z',
+  },
+  {
+    id: 5,
+    name: 'David Lee',
+    email: 'david.lee@example.com',
+    avatarUrl: 'https://example.com/david-lee-avatar',
+    createdAt: '2022-01-22T09:30:00Z',
+    updatedAt: '2022-01-30T12:40:00Z',
+  },
+];

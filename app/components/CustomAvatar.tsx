@@ -23,7 +23,7 @@ const CustomAvatar = ({
       shape={shape}
       src={src}
       size={size}
-      className={`!bg-[#ac6803] !flex items-center justify-center border-none ${customStyle}`}
+      className={`!bg-[#ac6803] !flex items-center justify-center border-none ${customStyle} hide-alt`}
       {...rest}
     >
       {getNameInitials(name)}

@@ -33,9 +33,16 @@ type ProjectCardProps = {
     name: string;
     avatarUrl?: string;
   }[];
+  deleteHandler: (id: string) => void;
 };
 
-const ProjectCard = ({ id, title, dueDate, users }: ProjectCardProps) => {
+const ProjectCard = ({
+  id,
+  title,
+  dueDate,
+  users,
+  deleteHandler,
+}: ProjectCardProps) => {
   const { token } = theme.useToken();
 
   const edit = () => {};
@@ -54,13 +61,15 @@ const ProjectCard = ({ id, title, dueDate, users }: ProjectCardProps) => {
         danger: true,
         label: 'Delete Card',
         key: '2',
-        onClick: () => {},
+        onClick: () => {
+          deleteHandler(id);
+        },
         icon: <DeleteOutlined />,
       },
     ];
 
     return dropdownItems;
-  }, []);
+  }, [deleteHandler, id]);
 
   const dueDateOptions = useMemo(() => {
     if (!dueDate) return null;
@@ -87,13 +96,21 @@ const ProjectCard = ({ id, title, dueDate, users }: ProjectCardProps) => {
     >
       <Card
         size='small'
-        headStyle={{color: '#000'}}
+        headStyle={{ color: '#000' }}
         title={<Text ellipsis={{ tooltip: title }}>{title}</Text>}
         onClick={() => edit()}
         extra={
           <Dropdown
             trigger={['click']}
-            menu={{ items: dropdownItems }}
+            menu={{
+              items: dropdownItems,
+              onPointerDown: (e) => {
+                e.stopPropagation();
+              },
+              onClick: (e) => {
+                e.domEvent.stopPropagation();
+              },
+            }}
             placement='bottom'
             arrow={{ pointAtCenter: true }}
           >
@@ -128,7 +145,13 @@ const ProjectCard = ({ id, title, dueDate, users }: ProjectCardProps) => {
             </Tag>
           )}
           {!!users?.length && (
-            <Space size={4} wrap direction='horizontal' align='center' className='flex justify-end ml-auto'>
+            <Space
+              size={4}
+              wrap
+              direction='horizontal'
+              align='center'
+              className='flex justify-end ml-auto'
+            >
               {users.map((user) => (
                 <Tooltip key={user.id} title={user.name}>
                   <CustomAvatar name={user.name} src={user.avatarUrl} />
@@ -145,10 +168,11 @@ const ProjectCard = ({ id, title, dueDate, users }: ProjectCardProps) => {
 export default ProjectCard;
 
 export const ProjectCardMemo = memo(ProjectCard, (prev, next) => {
-    return (
-        prev.id === next.id &&
-        prev.title === next.title &&
-        prev.dueDate === next.dueDate &&
-        prev.users?.length === next.users?.length && prev.updatedAt === next.updatedAt
-    )
-})
+  return (
+    prev.id === next.id &&
+    prev.title === next.title &&
+    prev.dueDate === next.dueDate &&
+    prev.users?.length === next.users?.length &&
+    prev.updatedAt === next.updatedAt
+  );
+});
