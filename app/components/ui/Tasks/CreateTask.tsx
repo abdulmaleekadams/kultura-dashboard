@@ -1,5 +1,5 @@
 'use client';
-import { users } from '@/utils/mockData';
+import { usersList } from '@/utils/mockData';
 import { Form, Input, Modal, DatePicker, Select, Space } from 'antd';
 import { useState } from 'react';
 import CustomAvatar from '../../CustomAvatar';
@@ -19,10 +19,16 @@ type Props = {
       stageTitle: string | undefined;
     }>
   >;
+  handleFormSubmit: any;
 };
 
-const CreateTask = ({ openCreateTaskModal, setOpenCreateTaskModal }: Props) => {
+const CreateTask = ({
+  openCreateTaskModal,
+  setOpenCreateTaskModal,
+  handleFormSubmit,
+}: Props) => {
   const [disableCreateBtn, setDisableCreateBtn] = useState(false);
+  const [filteredUsers, setFilteredUsers] = useState(usersList);
 
   const handleCancel = () => {
     // close the modal by setting openForm to false
@@ -31,9 +37,18 @@ const CreateTask = ({ openCreateTaskModal, setOpenCreateTaskModal }: Props) => {
       stageId: null,
       stageTitle: '',
     });
+    form.resetFields()
   };
 
   const [form] = Form.useForm();
+
+  const handleSearchUser = (value: string) => {
+    const lowercasedValue = value.toLowerCase();
+    const filtered = usersList.filter((user) =>
+      user.name.toLowerCase().includes(lowercasedValue)
+    );
+    setFilteredUsers(filtered);
+  };
 
   return (
     <Modal
@@ -42,10 +57,16 @@ const CreateTask = ({ openCreateTaskModal, setOpenCreateTaskModal }: Props) => {
       width={512}
       open={openCreateTaskModal.openForm}
       okText='Add'
-      okButtonProps={{ disabled: disableCreateBtn }}
+      okButtonProps={{
+        disabled: disableCreateBtn,
+      }}
       onOk={form.submit}
     >
-      <Form form={form} layout='vertical'>
+      <Form
+        form={form}
+        layout='vertical'
+        onFinish={(values: any) => handleFormSubmit(values, openCreateTaskModal.stageId)}
+      >
         <Form.Item
           label='Title'
           name='title'
@@ -70,10 +91,11 @@ const CreateTask = ({ openCreateTaskModal, setOpenCreateTaskModal }: Props) => {
             mode='multiple'
             style={{ width: '100%' }}
             placeholder='Please select'
-            defaultValue={['a10', 'c12']}
-            // onChange={handleChange}
+            defaultValue={[]}
+            filterOption={false}
+            onSearch={handleSearchUser}
           >
-            {users.map((user) => (
+            {filteredUsers.map((user) => (
               <Select.Option key={user.id}>
                 <Space className='flex flex-row'>
                   <CustomAvatar

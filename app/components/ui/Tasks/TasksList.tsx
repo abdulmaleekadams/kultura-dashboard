@@ -94,10 +94,15 @@ const TasksList = ({ children }: React.PropsWithChildren) => {
       // Remove the task at the found index
       tasks.splice(taskIndex, 1);
       setTasks([...tasks]);
-      toast.success('Task Successfully Deleted')
+      toast.success('Task Successfully Deleted');
     }
   };
 
+  const handleFormSubmit = (values: any, stageId: string) => {
+    setTasks([{ ...values, stageId }, ...tasks]);
+    setOpenCreateTaskModal({ openForm: false, stageId: null, stageTitle: '' });
+    // console.log(values, openCreateTaskModal.stageId);
+  };
   return (
     <>
       <KanbanBoardConatainer>
@@ -178,6 +183,7 @@ const TasksList = ({ children }: React.PropsWithChildren) => {
         <CreateTask
           openCreateTaskModal={openCreateTaskModal}
           setOpenCreateTaskModal={setOpenCreateTaskModal}
+          handleFormSubmit={handleFormSubmit}
         />
       )}
     </>

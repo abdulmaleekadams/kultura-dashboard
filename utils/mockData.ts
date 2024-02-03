@@ -1114,7 +1114,7 @@ export const tasksList = [
   // Add more tasks with meaningful titles as needed
 ];
 
-export const users = [
+export const usersList = [
   {
     id: 1,
     name: 'John Doe',
