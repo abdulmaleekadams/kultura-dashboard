@@ -10,4 +10,131 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Profile{
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  name String
+  email String
+  users User[]
+  companies Company[]
+  tasks Task[]
+  deals Deal[]
+}
 
+model User {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  name String
+  email String @unique
+  jobTitle String
+  phone String @unique
+  role ROLE
+  tasks Task[]
+  deals Deal[]
+  profileId String @db.ObjectId
+  profile Profile @relation(fields: [profileId], references: [id])
+
+}
+
+model Company {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  name String
+  size CompanySize
+  type BusinessType
+  industryId String @db.ObjectId
+  industry Industry @relation(fields: [industryId], references: [id])
+  revenue Float
+  website String
+  country String
+  dealAmount Float
+  salesOwnerId String @db.ObjectId
+  salesOwner SalesOwner @relation(fields: [salesOwnerId], references: [id])
+  contactsId String[] @db.ObjectId
+  contacts Contact @relation(fields: [contactsId], references: [id])
+  deals Deal[]
+  profileId String @db.ObjectId
+  profile Profile @relation(fields: [profileId], references: [id])
+}
+
+model Industry{
+    id String @id @default(auto()) @map("_id") @db.ObjectId
+    title String
+    company Company[]
+}
+
+model Contact {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  name String
+  email String @unique
+  company Company[]
+  deals Deal[]
+}
+
+model SalesOwner{
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  name String
+  email String @unique
+  company Company[]
+}
+
+model Task {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  title String
+  description String
+  dueDate DateTime
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  taskStage TaskStage @relation(fields: [taskStageId], references: [id])
+  taskStageId String @db.ObjectId
+  assignedUsers User @relation(fields: [assignedUsersId], references: [id])
+  assignedUsersId String[] @db.ObjectId
+  profileId String @db.ObjectId
+  profile Profile @relation(fields: [profileId], references: [id])
+}
+
+model TaskStage {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  title String
+  tasks Task[]
+}
+
+model Deal {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  title String
+  companyId String @db.ObjectId
+  company Company  @relation(fields: [companyId], references: [id])
+  amount Float
+  stage DealStage
+  ownerId String @db.ObjectId
+  owner User @relation(fields: [ownerId], references: [id])
+  contactId String @db.ObjectId
+  contact Contact @relation(fields: [contactId], references: [id])
+  profileId String @db.ObjectId
+  profile Profile @relation(fields: [profileId], references: [id])
+}
+
+enum CompanySize {
+  Enterprise
+  Large
+  Medium
+  Small
+}
+
+enum DealStage {
+  NEW
+  FOLLOW_UP
+  UNDER_REVIEW
+  UNASSIGNED
+  DEMO
+  WON
+  LOST
+}
+
+enum BusinessType {
+  B2B
+  B2C
+  B2G
+}
+
+enum ROLE {
+  ADMIN
+  USER
+}
