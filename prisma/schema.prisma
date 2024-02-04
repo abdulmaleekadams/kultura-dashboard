@@ -85,7 +85,7 @@ model Task {
   taskStage TaskStage @relation(fields: [taskStageId], references: [id])
   taskStageId String @db.ObjectId
   assignedUsers User @relation(fields: [assignedUsersId], references: [id])
-  assignedUsersId String[] @db.ObjectId
+  assignedUsersId String[] @db.ObjectId @default([])
   profileId String @db.ObjectId
   profile Profile @relation(fields: [profileId], references: [id])
 }

@@ -12,6 +12,7 @@ import { KanbanAddCardButton } from './kanban/KanbabAddCardButton';
 import { DragEndEvent } from '@dnd-kit/core';
 import CreateTask from './CreateTask';
 import toast from 'react-hot-toast';
+import { createTask } from '@/app/server/actions';
 
 type Props = {};
 
@@ -98,10 +99,10 @@ const TasksList = ({ children }: React.PropsWithChildren) => {
     }
   };
 
-  const handleFormSubmit = (values: any, stageId: string) => {
+  const handleFormSubmit = async (values: any, stageId: string) => {
     setTasks([{ ...values, stageId }, ...tasks]);
-    setOpenCreateTaskModal({ openForm: false, stageId: null, stageTitle: '' });
-    // console.log(values, openCreateTaskModal.stageId);
+    await createTask(values, stageId);
+    // setOpenCreateTaskModal({ openForm: false, stageId: null, stageTitle: '' });
   };
   return (
     <>
