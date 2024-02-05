@@ -61,5 +61,7 @@ export const updateTask = async (values: any) => {
 };
 
 export const deleteTask = async (id: string) => {
-  console.log(id);
+  await prisma.task.delete({ where: { id } });
+
+  revalidatePath('/tasks');
 };

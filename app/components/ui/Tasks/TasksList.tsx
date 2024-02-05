@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   KanbanBoard,
   KanbanBoardConatainer,
@@ -11,7 +11,7 @@ import { KanbanAddCardButton } from './kanban/KanbabAddCardButton';
 import { DragEndEvent } from '@dnd-kit/core';
 import CreateTask from './CreateTask';
 import toast from 'react-hot-toast';
-import { createTask } from '@/app/server/actions';
+import { createTask, deleteTask } from '@/app/server/actions';
 import { Task, TaskStage } from '@/utils/types';
 
 type Props = {
@@ -103,16 +103,9 @@ const TasksList = ({
     }
   };
 
-  const deleteItemById = (id: string): void => {
+  const deleteTaskItem = async (id: string): void => {
     // Find the index of the task in the original tasks array
-    const taskIndex = tasks.findIndex((task) => task.id === id);
-
-    if (taskIndex !== -1) {
-      // Remove the task at the found index
-      tasks.splice(taskIndex, 1);
-      setTasks([...tasks]);
-      toast.success('Task Successfully Deleted');
-    }
+    const taskId = await deleteTask(id)
   };
 
   const handleFormSubmit = async (values: any, stageId: string) => {
@@ -148,7 +141,7 @@ const TasksList = ({
                 <ProjectCardMemo
                   {...task}
                   dueDate={(task.dueDate as string) || undefined}
-                  deleteHandler={deleteItemById}
+                  deleteHandler={deleteTaskItem}
                 />
               </KanbanItem>
             ))}
@@ -183,7 +176,7 @@ const TasksList = ({
                       <ProjectCardMemo
                         {...task}
                         dueDate={task.dueDate || undefined}
-                        deleteHandler={deleteItemById}
+                        deleteHandler={deleteTaskItem}
                       />
                     </KanbanItem>
                   );
