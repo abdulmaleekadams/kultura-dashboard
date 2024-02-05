@@ -94,21 +94,20 @@ export type Task = {
   id: string;
   title: string;
   description: string;
-  dueDate: Date;
+  dueDate: string | Date | undefined;
   createdAt: Date;
-  updatedAt: Date;
-  taskStage: TaskStage;
+  updatedAt: string | Date | undefined;
   taskStageId: string;
-  assignedUsers: User;
-  assignedUsersId: string[];
+  assignedUsers?: User;
+  assignedUsersId?: string[];
   profileId: string;
-  profile: Profile;
+  taskStage?: string[];
 };
 
 export type TaskStage = {
-  id: string;
+  id?: string;
   title: string;
-  tasks: Task[];
+  tasks?: Task[];
 };
 
 export type Deal = {

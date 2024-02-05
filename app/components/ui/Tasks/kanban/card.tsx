@@ -26,7 +26,7 @@ import CustomAvatar from '@/app/components/CustomAvatar';
 type ProjectCardProps = {
   id: string;
   title: string;
-  dueDate?: string | undefined;
+  dueDate?: string  | undefined;
   updatedAt?: string;
   users?: {
     id: string | number;

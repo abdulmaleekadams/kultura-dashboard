@@ -1,50 +1,66 @@
 'use client';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import {
   KanbanBoard,
   KanbanBoardConatainer,
 } from './kanban/KanbanBoardConatainer';
 import KanbanColumn from './kanban/KanbanColumn';
 import KanbanItem from './kanban/KanbanItem';
-import { tasksStages, tasksList } from '@/utils/mockData';
 import { ProjectCardMemo } from './kanban/card';
 import { KanbanAddCardButton } from './kanban/KanbabAddCardButton';
 import { DragEndEvent } from '@dnd-kit/core';
 import CreateTask from './CreateTask';
 import toast from 'react-hot-toast';
 import { createTask } from '@/app/server/actions';
+import { Task, TaskStage } from '@/utils/types';
 
-type Props = {};
+type Props = {
+  tasks: Task[];
+  taskStages: TaskStage[];
+};
 
-const TasksList = ({ children }: React.PropsWithChildren) => {
-  const stages = tasksStages.filter(({ title }) =>
-    ['TODO', 'IN PROGRESS', 'IN REVIEW', 'COMPLETED'].includes(
-      title.toUpperCase()
-    )
-  );
+const TasksList = ({
+  children,
+  tasks,
+  taskStages,
+}: React.PropsWithChildren<Props>) => {
+  const [taskStagesData, setTaskStagesData] = useState<{
+    unassignedStage: { id: string; tasks: Task[] };
+    columns: { id: string; title: string; tasks: Task[] }[];
+  }>({
+    unassignedStage: { id: '', tasks: [] },
+    columns: [{ id: '', title: '', tasks: [] }],
+  });
 
-  const [tasks, setTasks] = useState(tasksList);
+  useEffect(() => {
+    if (!tasks || !taskStages) {
+      setTaskStagesData({
+        unassignedStage: { id: '', tasks: [] },
+        columns: [{ id: '', title: '', tasks: [] }],
+      });
+    } else {
+      const unassignedStageId = taskStages.find(
+        (stage) => stage.title === 'unassigned'
+      )?.id;
 
-  const taskStages = useMemo(() => {
-    if (!tasks || !stages) {
-      return {
-        unassignedStage: [],
-        stages: [],
-      };
+      const unassignedStage = tasks.filter(
+        (task) => task.taskStageId === unassignedStageId
+      );
+
+      const grouped: { id: string; title: string; tasks: Task[] }[] = taskStages
+        ?.filter((stage) => stage.id !== unassignedStageId)
+        .map((stage) => ({
+          id: stage.id!,
+          title: stage.title,
+          tasks: (tasks || [])?.filter((task) => task.taskStageId === stage.id),
+        }));
+
+      setTaskStagesData({
+        unassignedStage: { id: unassignedStageId!, tasks: unassignedStage },
+        columns: grouped,
+      });
     }
-
-    const unassignedStage = tasks.filter((task) => task.stageId === null);
-
-    const grouped = stages.map((stage) => ({
-      ...stage,
-      tasks: tasks.filter((task) => task.stageId === stage.id),
-    }));
-
-    return {
-      unassignedStage,
-      columns: grouped,
-    };
-  }, [stages, tasks]);
+  }, [tasks, taskStages]);
 
   const [openCreateTaskModal, setOpenCreateTaskModal] = useState<{
     openForm: boolean;
@@ -100,10 +116,14 @@ const TasksList = ({ children }: React.PropsWithChildren) => {
   };
 
   const handleFormSubmit = async (values: any, stageId: string) => {
-    setTasks([{ ...values, stageId }, ...tasks]);
-    await createTask(values, stageId);
-    // setOpenCreateTaskModal({ openForm: false, stageId: null, stageTitle: '' });
+    await createTask(values, stageId, '65bf0853fbd8a67612a252e9');
+    setOpenCreateTaskModal({
+      openForm: false,
+      stageId: null,
+      stageTitle: '',
+    });
   };
+
   return (
     <>
       <KanbanBoardConatainer>
@@ -111,12 +131,15 @@ const TasksList = ({ children }: React.PropsWithChildren) => {
           <KanbanColumn
             id='unassigned'
             title={'unassigned'}
-            count={taskStages.unassignedStage.length || 0}
+            count={taskStagesData.unassignedStage.tasks.length || 0}
             onAddClick={() =>
-              handleAddCard({ stageId: 'unassigned', stageTitle: 'unassigned' })
+              handleAddCard({
+                stageId: taskStagesData.unassignedStage.id,
+                stageTitle: 'unassigned',
+              })
             }
           >
-            {taskStages.unassignedStage.map((task) => (
+            {taskStagesData.unassignedStage.tasks.map((task) => (
               <KanbanItem
                 key={task.id}
                 id={task?.id}
@@ -124,23 +147,23 @@ const TasksList = ({ children }: React.PropsWithChildren) => {
               >
                 <ProjectCardMemo
                   {...task}
-                  dueDate={task.dueDate || undefined}
+                  dueDate={(task.dueDate as string) || undefined}
                   deleteHandler={deleteItemById}
                 />
               </KanbanItem>
             ))}
-            {!taskStages.unassignedStage.length && (
+            {!taskStagesData.unassignedStage.tasks.length && (
               <KanbanAddCardButton
                 onClick={() =>
                   handleAddCard({
-                    stageId: 'unassigned',
+                    stageId: taskStagesData.unassignedStage.id,
                     stageTitle: 'unassigned',
                   })
                 }
               />
             )}
           </KanbanColumn>
-          {taskStages.columns?.map((column) => {
+          {taskStagesData.columns?.map((column) => {
             return (
               <KanbanColumn
                 key={column.id}
@@ -190,5 +213,4 @@ const TasksList = ({ children }: React.PropsWithChildren) => {
     </>
   );
 };
-
 export default TasksList;

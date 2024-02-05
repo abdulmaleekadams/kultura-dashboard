@@ -1082,7 +1082,7 @@ export const tasksList = [
       'Create and distribute a customer feedback survey to gather insights.',
     dueDate: '2024-10-15',
     completed: false,
-    stageId: '124',
+    stageId: '65bef10305b1ea3428a8da80',
     users: [
       {
         id: 122,
@@ -1100,7 +1100,7 @@ export const tasksList = [
       'Create and distribute a customer feedback survey to gather insights.',
     dueDate: '2024-01-31',
     completed: false,
-    stageId: null,
+    stageId: '65bef10305b1ea3428a8da7c',
     users: [
       {
         id: 122,

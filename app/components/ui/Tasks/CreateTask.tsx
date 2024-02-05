@@ -4,6 +4,7 @@ import { Form, Input, Modal, DatePicker, Select, Space } from 'antd';
 import { useState } from 'react';
 import CustomAvatar from '../../CustomAvatar';
 import { Text } from '../../Text';
+import toast from 'react-hot-toast';
 
 type Props = {
   openCreateTaskModal: {
@@ -37,7 +38,7 @@ const CreateTask = ({
       stageId: null,
       stageTitle: '',
     });
-    form.resetFields()
+    form.resetFields();
   };
 
   const [form] = Form.useForm();
@@ -48,6 +49,17 @@ const CreateTask = ({
       user.name.toLowerCase().includes(lowercasedValue)
     );
     setFilteredUsers(filtered);
+  };
+
+  const onFinish = async (values: any, stageId: string) => {
+    try {
+      setDisableCreateBtn(true);
+      await handleFormSubmit(values, stageId);
+      form.resetFields();
+      toast.success('New Task Created Successfully');
+    } catch (error) {
+      setDisableCreateBtn(false);
+    }
   };
 
   return (
@@ -65,7 +77,9 @@ const CreateTask = ({
       <Form
         form={form}
         layout='vertical'
-        onFinish={(values: any) => handleFormSubmit(values, openCreateTaskModal.stageId)}
+        onFinish={async (values: any) =>
+          await onFinish(values, openCreateTaskModal.stageId!)
+        }
       >
         <Form.Item
           label='Title'
@@ -112,7 +126,7 @@ const CreateTask = ({
         </Form.Item>
         <Form.Item
           label='Due date'
-          name='duedate'
+          name='dueDate'
           rules={[
             {
               required: true,

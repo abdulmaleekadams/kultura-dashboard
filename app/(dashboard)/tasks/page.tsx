@@ -1,11 +1,15 @@
-import TasksList from "@/app/components/ui/Tasks/TasksList"
+import TasksList from '@/app/components/ui/Tasks/TasksList';
+import { getTaskStages, getTasks } from '@/app/server/actions';
 
-const TasksPage = () => {
+const TasksPage = async () => {
+  const taskStages = await getTaskStages();
+  const tasks = await getTasks();
+
   return (
     <div>
-      <TasksList />
+      <TasksList tasks={tasks} taskStages={taskStages} />
     </div>
-  )
-}
+  );
+};
 
-export default TasksPage
+export default TasksPage;

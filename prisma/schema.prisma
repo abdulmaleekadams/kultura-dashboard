@@ -27,12 +27,29 @@ model User {
   jobTitle String
   phone String @unique
   role ROLE
-  tasks Task[]
   deals Deal[]
   profileId String @db.ObjectId
   profile Profile @relation(fields: [profileId], references: [id])
-
+  tasks Task[] @relation(fields: [tasksId], references: [id])
+  tasksId String[] @db.ObjectId @default([])
 }
+
+model Task {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  title String
+  description String
+  dueDate DateTime
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  taskStage TaskStage @relation(fields: [taskStageId], references: [id])
+  taskStageId String @db.ObjectId
+  assignedUsers User[] @relation(fields: [assignedUsersId], references: [id])
+  assignedUsersId String[] @db.ObjectId @default([])
+  profileId String @db.ObjectId
+  profile Profile @relation(fields: [profileId], references: [id])
+}
+
+
 
 model Company {
   id String @id @default(auto()) @map("_id") @db.ObjectId
@@ -75,20 +92,6 @@ model SalesOwner{
   company Company[]
 }
 
-model Task {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-  title String
-  description String
-  dueDate DateTime
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  taskStage TaskStage @relation(fields: [taskStageId], references: [id])
-  taskStageId String @db.ObjectId
-  assignedUsers User @relation(fields: [assignedUsersId], references: [id])
-  assignedUsersId String[] @db.ObjectId @default([])
-  profileId String @db.ObjectId
-  profile Profile @relation(fields: [profileId], references: [id])
-}
 
 model TaskStage {
   id String @id @default(auto()) @map("_id") @db.ObjectId
