@@ -11,7 +11,7 @@ import { KanbanAddCardButton } from './kanban/KanbabAddCardButton';
 import { DragEndEvent } from '@dnd-kit/core';
 import CreateTask from './CreateTask';
 import toast from 'react-hot-toast';
-import { createTask, deleteTask } from '@/app/server/actions';
+import { createTask, deleteTask, updateTaskOnDrag } from '@/app/server/actions';
 import { Task, TaskStage } from '@/utils/types';
 
 type Props = {
@@ -32,6 +32,8 @@ const TasksList = ({
     columns: [{ id: '', title: '', tasks: [] }],
   });
 
+  const [tasksList, setTasksList] = useState<Task[]>([]);
+
   useEffect(() => {
     if (!tasks || !taskStages) {
       setTaskStagesData({
@@ -39,11 +41,12 @@ const TasksList = ({
         columns: [{ id: '', title: '', tasks: [] }],
       });
     } else {
+      setTasksList(tasks);
       const unassignedStageId = taskStages.find(
         (stage) => stage.title === 'unassigned'
       )?.id;
 
-      const unassignedStage = tasks.filter(
+      const unassignedStage = tasksList.filter(
         (task) => task.taskStageId === unassignedStageId
       );
 
@@ -52,7 +55,9 @@ const TasksList = ({
         .map((stage) => ({
           id: stage.id!,
           title: stage.title,
-          tasks: (tasks || [])?.filter((task) => task.taskStageId === stage.id),
+          tasks: (tasksList || [])?.filter(
+            (task) => task.taskStageId === stage.id
+          ),
         }));
 
       setTaskStagesData({
@@ -60,7 +65,7 @@ const TasksList = ({
         columns: grouped,
       });
     }
-  }, [tasks, taskStages]);
+  }, [tasks, tasksList, taskStages]);
 
   const [openCreateTaskModal, setOpenCreateTaskModal] = useState<{
     openForm: boolean;
@@ -81,31 +86,31 @@ const TasksList = ({
     });
   };
 
-  const handleOnDragEnd = (e: DragEndEvent) => {
-    let stageId = e.over?.id as undefined | string | null;
+  const handleOnDragEnd = async (e: DragEndEvent) => {
+    let stageId = e.over?.id as string;
     const taskId = e.active.id as string;
     const taskStageId = e.active.data.current?.stageId;
 
+    console.log(taskId);
+    
     if (taskStageId === stageId) return;
-
-    if (stageId === 'unassigned') {
-      stageId = null;
-    }
 
     // Find the index of the task in the original tasks array
     const taskIndex = tasks.findIndex((task) => task.id === taskId);
 
-    console.log(stageId);
-
     if (taskIndex !== -1) {
-      tasks[taskIndex].stageId = stageId as string;
-      setTasks([...tasks]);
+      tasksList[taskIndex].taskStageId = stageId as string;
+      setTasksList([...tasks]);
     }
+
+    // sync with database
+    await updateTaskOnDrag(taskId, stageId);
   };
 
-  const deleteTaskItem = async (id: string): void => {
+  const deleteTaskItem = async (id: string) => {
     // Find the index of the task in the original tasks array
-    const taskId = await deleteTask(id)
+    const taskId = await deleteTask(id);
+    toast.success('Task Deleted');
   };
 
   const handleFormSubmit = async (values: any, stageId: string) => {
@@ -122,7 +127,7 @@ const TasksList = ({
       <KanbanBoardConatainer>
         <KanbanBoard onDragEnd={handleOnDragEnd}>
           <KanbanColumn
-            id='unassigned'
+            id={taskStagesData.unassignedStage.id}
             title={'unassigned'}
             count={taskStagesData.unassignedStage.tasks.length || 0}
             onAddClick={() =>
@@ -136,7 +141,7 @@ const TasksList = ({
               <KanbanItem
                 key={task.id}
                 id={task?.id}
-                data={{ ...task, stageId: 'unassigned' }}
+                data={{ ...task, stageId: taskStagesData.unassignedStage.id }}
               >
                 <ProjectCardMemo
                   {...task}

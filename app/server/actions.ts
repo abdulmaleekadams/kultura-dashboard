@@ -60,8 +60,12 @@ export const updateTask = async (values: any) => {
   console.log(values);
 };
 
+export const updateTaskOnDrag = async (id: string, stageId: string) => {
+  await prisma.task.update({ where: { id }, data: { taskStageId: stageId } });
+  revalidatePath('/tasks');
+};
+
 export const deleteTask = async (id: string) => {
   await prisma.task.delete({ where: { id } });
-
   revalidatePath('/tasks');
 };
