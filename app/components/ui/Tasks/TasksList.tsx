@@ -89,10 +89,8 @@ const TasksList = ({
   const handleOnDragEnd = async (e: DragEndEvent) => {
     let stageId = e.over?.id as string;
     const taskId = e.active.id as string;
-    const taskStageId = e.active.data.current?.stageId;
+    const taskStageId = e.active.data.current?.taskStageId;
 
-    console.log(taskId);
-    
     if (taskStageId === stageId) return;
 
     // Find the index of the task in the original tasks array
@@ -105,12 +103,12 @@ const TasksList = ({
 
     // sync with database
     await updateTaskOnDrag(taskId, stageId);
+    toast.success('Task stage synced successfully');
   };
 
   const deleteTaskItem = async (id: string) => {
-    // Find the index of the task in the original tasks array
-    const taskId = await deleteTask(id);
-    toast.success('Task Deleted');
+    await deleteTask(id);
+    toast.success('Task deleted successfully');
   };
 
   const handleFormSubmit = async (values: any, stageId: string) => {
@@ -180,7 +178,7 @@ const TasksList = ({
                     <KanbanItem key={task.id} id={task.id} data={task}>
                       <ProjectCardMemo
                         {...task}
-                        dueDate={task.dueDate || undefined}
+                        dueDate={(task.dueDate as string) || undefined}
                         deleteHandler={deleteTaskItem}
                       />
                     </KanbanItem>

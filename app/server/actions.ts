@@ -28,7 +28,6 @@ export const createTask = async (
       description: values.description,
       dueDate: values.dueDate!,
       profileId: values.profileId,
-      // taskStageId: stageId,
       taskStage: {
         connect: { id: stageId },
       },

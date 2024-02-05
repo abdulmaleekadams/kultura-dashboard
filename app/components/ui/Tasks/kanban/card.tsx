@@ -27,7 +27,7 @@ type ProjectCardProps = {
   id: string;
   title: string;
   dueDate?: string  | undefined;
-  updatedAt?: string;
+  updatedAt?: string | Date;
   users?: {
     id: string | number;
     name: string;

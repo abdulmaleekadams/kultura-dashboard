@@ -28,6 +28,11 @@ const sidebarItems = [
     icon: <ProjectOutlined />,
     url: '/tasks',
   },
+  {
+    label: 'Administration',
+    icon: <ProjectOutlined />,
+    url: '/administration',
+  },
 ];
 
 const SidebarLink = ({ label, icon, url }: Props) => {

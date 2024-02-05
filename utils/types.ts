@@ -101,7 +101,6 @@ export type Task = {
   assignedUsers?: User;
   assignedUsersId?: string[];
   profileId: string;
-  taskStage?: string[];
 };
 
 export type TaskStage = {
