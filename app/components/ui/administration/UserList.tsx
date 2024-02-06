@@ -9,48 +9,33 @@ import Highlighter from 'react-highlight-words';
 import { EyeOutlined, DeleteOutlined } from '@ant-design/icons';
 import CustomAvatar from '../../CustomAvatar';
 import { Text } from '../../Text';
+import { getUsers } from '@/app/server/actions';
 
 type InputRef = GetRef<typeof Input>;
 
-interface DataType {
-  key: string;
+type DataType = {
+  id: string;
   name: string;
-  title: string;
+  email: string;
+  jobTitle: string;
+  phone: string;
+  prefix: string;
   role: string;
-}
+  profileId: string;
+  tasksId: string[];
+};
 
 type DataIndex = keyof DataType;
+type Props = {
+  data: DataType[];
+  usersCount: number;
+};
 
-const data: DataType[] = [
-  {
-    key: '1',
-    name: 'John Brown',
-    title: 'Forward Solutions Planner',
-    role: 'Sales Manager',
-  },
-  {
-    key: '2',
-    name: 'Joe Black',
-    title: 'Chief Assurance Facilitator',
-    role: 'Sales Person',
-  },
-  {
-    key: '3',
-    name: 'Abdulmaleek Adams',
-    title: 'Legacy Marketing Coordinator',
-    role: 'Admin',
-  },
-  {
-    key: '4',
-    name: 'Jim Red',
-    title: 'Lead Data Strategist',
-    role: 'Sales Intern',
-  },
-];
-
-const UserList = () => {
+const UserList = ({ data, usersCount }: Props) => {
   const [searchText, setSearchText] = useState('');
   const [searchedColumn, setSearchedColumn] = useState('');
+  const [userData, setUserData] = useState(data);
+  const [currentPage, setCurrentPage] = useState(1);
   const searchInput = useRef<InputRef>(null);
 
   const handleSearch = (
@@ -143,7 +128,7 @@ const UserList = () => {
         .includes((value as string).toLowerCase()),
     onFilterDropdownOpenChange: (visible) => {
       if (visible) {
-        setTimeout(() => searchInput.current?.select(), 100);
+        setTimeout(() => searchInput.current, 100);
       }
     },
     render: (text) =>
@@ -169,7 +154,11 @@ const UserList = () => {
       render: (name, record) => (
         <Space>
           <CustomAvatar name={name} size='small' />
-          <Text size='xs' className='!whitespace-nowrap' ellipsis={{ tooltip: name }}>
+          <Text
+            size='xs'
+            className='!whitespace-nowrap'
+            ellipsis={{ tooltip: name }}
+          >
             {name}
           </Text>
         </Space>
@@ -177,11 +166,14 @@ const UserList = () => {
     },
     {
       title: 'Title',
-      dataIndex: 'title',
-      key: 'title',
-      width:'10%',
-      ...getColumnSearchProps('title'),
-      render: (value) => <Text size='xs' className='pb-1' ellipsis={{ tooltip: value }}>{value}</Text>,
+      dataIndex: 'jobTitle',
+      key: 'jobTitle',
+      ...getColumnSearchProps('jobTitle'),
+      render: (value) => (
+        <Text size='xs' className='pb-1' ellipsis={{ tooltip: value }}>
+          {value}
+        </Text>
+      ),
     },
     {
       title: 'Role',
@@ -189,13 +181,17 @@ const UserList = () => {
       key: 'role',
       width: '20%',
       render: (value) => (
-        <Text size='xs' className='bg-red-200 w-[max-content] px-1 rounded !text-red-500 whitespace-nowrap border border-red-500'>
+        <Text
+          size='xs'
+          className='bg-red-200 w-[max-content] px-1 rounded !text-red-500 whitespace-nowrap border border-red-500'
+        >
           {value}
         </Text>
       ),
-      filters: data.map((user) => ({ text: user.role, value: user.role })),
-      onFilter: (value: string, record): Boolean =>
-        record.role.indexOf(value) === 0,
+      filters: userData?.map((user) => ({ text: user.role, value: user.role })),
+      // @ts-ignore
+      onFilter: (value: string, record: DataType) =>
+        record.role.toString().indexOf(value as string) === 0,
     },
     {
       title: 'Action',
@@ -207,13 +203,15 @@ const UserList = () => {
         <div className='flex gap-x-2'>
           <Button
             className='flex items-center justify-center !px-2 !w-[auto]'
-            id={record.key}
+            id={record.id}
+            title='View'
           >
             <EyeOutlined />
           </Button>
           <Button
             className='flex items-center justify-center !px-2 !w-[auto] !border-red-400 !text-red-400 hover:!border-red-600 hover:!text-red-600'
-            id={record.key}
+            title='Delete'
+            id={record.id}
           >
             <DeleteOutlined />
           </Button>
@@ -222,15 +220,31 @@ const UserList = () => {
     },
   ];
 
+  const handlePageChange = async (page: number, pageSize: number) => {
+    const newData = await getUsers((page - 1) * pageSize, pageSize);
+    setUserData(newData);
+    setCurrentPage(page);
+  };
+
   return (
-    <Table
-      columns={columns}
-      dataSource={data}
-      rowClassName={'text-[0.85rem]'}
-      size='small'
-      className='px-3'
-      scroll={{ x: true }}
-    />
+    userData && (
+      <Table
+        columns={columns}
+        dataSource={userData}
+        rowClassName={'text-[0.85rem]'}
+        size='small'
+        className='px-3 cursor-context-menu'
+        scroll={{ x: true }}
+        pagination={{
+          total: usersCount,
+          current: currentPage,
+          pageSize: 10,
+          onChange: async (page, pageSize) => {
+            await handlePageChange(page, pageSize);
+          },
+        }}
+      />
+    )
   );
 };
 

@@ -25,17 +25,37 @@ export const createUser = async (values: {
   profileId: string;
   prefix: string;
 }) => {
-  console.log(values);
-  const newUser = await prisma.user.create({
+  await prisma.user.create({
     data: { ...values },
   });
-  console.log(newUser);
+  revalidatePath('/administration');
 };
 
-export const getUsers = async () => {
-  const users = await prisma.user.findMany();
+export const createUsers = async (
+  data: {
+    name: string;
+    jobTitle: string;
+    role: 'ADMIN' | 'USER';
+    email: string;
+    phone: string;
+    profileId: string;
+    prefix: string;
+  }[]
+) => {
+  await prisma.user.createMany({ data });
+  revalidatePath('/administration');
+};
+
+export const getUsers = async (skip = 0, take = 10) => {
+  const users = await prisma.user.findMany({ skip, take });
 
   return users;
+};
+
+export const getUsersCount = async () => {
+  const totalUser = await prisma.user.count();
+
+  return totalUser;
 };
 
 export const createTask = async (
