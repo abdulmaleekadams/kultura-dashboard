@@ -16,8 +16,26 @@ export const createDeal = async (values: any) => {
   console.log(values);
 };
 
-export const createUser = async (values: any) => {
+export const createUser = async (values: {
+  name: string;
+  jobTitle: string;
+  role: 'ADMIN' | 'USER';
+  email: string;
+  phone: string;
+  profileId: string;
+  prefix: string;
+}) => {
   console.log(values);
+  const newUser = await prisma.user.create({
+    data: { ...values },
+  });
+  console.log(newUser);
+};
+
+export const getUsers = async () => {
+  const users = await prisma.user.findMany();
+
+  return users;
 };
 
 export const createTask = async (

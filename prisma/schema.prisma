@@ -26,6 +26,7 @@ model User {
   email String @unique
   jobTitle String
   phone String @unique
+  prefix String
   role ROLE
   deals Deal[]
   profileId String @db.ObjectId
