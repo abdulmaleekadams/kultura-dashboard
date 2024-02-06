@@ -1,4 +1,5 @@
 import CompanyInfo from '@/app/components/ui/administration/CompanyInfo';
+import CreateUserModal from '@/app/components/ui/administration/CreateUserModal';
 import UserList from '@/app/components/ui/administration/UserList';
 import Image from 'next/image';
 import React from 'react';
@@ -16,8 +17,12 @@ const AdministrationPage = () => {
         />
         <h1 className='font-bold text-2xl'>Kulture Heiish</h1>
       </div>
-      <div className='flex justify-between mt-4'>
-        <div className='bg-white rounded-lg w-[67%]'>
+      <div className='my-4'>
+        <CreateUserModal />
+      </div>
+      
+      <div className='flex justify-between gap-6 flex-col blg:flex-row overflow-x-auto'>
+        <div className='bg-white rounded-lg flex-1 min-w-[500px] overflow-x-auto'>
           <div className='flex justify-between items-center py-4 px-4'>
             <div className='font-bold'>Users</div>
             <p>
@@ -26,7 +31,7 @@ const AdministrationPage = () => {
           </div>
           <UserList />
         </div>
-       <CompanyInfo />
+        <CompanyInfo />
       </div>
     </div>
   );

@@ -36,7 +36,7 @@ const data: DataType[] = [
   },
   {
     key: '3',
-    name: 'Jim Green',
+    name: 'Abdulmaleek Adams',
     title: 'Legacy Marketing Coordinator',
     role: 'Admin',
   },
@@ -164,11 +164,12 @@ const UserList = () => {
       title: 'Name',
       dataIndex: 'name',
       key: 'name',
+      fixed: 'left',
       ...getColumnSearchProps('name'),
       render: (name, record) => (
         <Space>
           <CustomAvatar name={name} size='small' />
-          <Text className='!whitespace-nowrap' ellipsis={{ tooltip: name }}>
+          <Text size='xs' className='!whitespace-nowrap' ellipsis={{ tooltip: name }}>
             {name}
           </Text>
         </Space>
@@ -178,7 +179,9 @@ const UserList = () => {
       title: 'Title',
       dataIndex: 'title',
       key: 'title',
+      width:'10%',
       ...getColumnSearchProps('title'),
+      render: (value) => <Text size='xs' className='pb-1' ellipsis={{ tooltip: value }}>{value}</Text>,
     },
     {
       title: 'Role',
@@ -186,17 +189,17 @@ const UserList = () => {
       key: 'role',
       width: '20%',
       render: (value) => (
-        <p className='bg-red-200 w-[max-content] px-2 rounded text-red-500 whitespace-nowrap border border-red-500 text-[0.75rem]'>
+        <Text size='xs' className='bg-red-200 w-[max-content] px-1 rounded !text-red-500 whitespace-nowrap border border-red-500'>
           {value}
-        </p>
+        </Text>
       ),
       filters: data.map((user) => ({ text: user.role, value: user.role })),
       onFilter: (value: string, record): Boolean =>
         record.role.indexOf(value) === 0,
     },
     {
-        title: 'Action',
-        className: 'py-4',
+      title: 'Action',
+      className: 'py-4',
       dataIndex: '',
       key: 'x',
       width: '10%',
@@ -224,8 +227,9 @@ const UserList = () => {
       columns={columns}
       dataSource={data}
       rowClassName={'text-[0.85rem]'}
-          size='small'
-          className='px-4'
+      size='small'
+      className='px-3'
+      scroll={{ x: true }}
     />
   );
 };

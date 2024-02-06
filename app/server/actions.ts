@@ -16,6 +16,10 @@ export const createDeal = async (values: any) => {
   console.log(values);
 };
 
+export const createUser = async (values: any) => {
+  console.log(values);
+};
+
 export const createTask = async (
   values: Task,
   stageId: string,

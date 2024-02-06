@@ -10,18 +10,18 @@ module.exports = {
     './src/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
-    extend: {},
-    screens: {
-      tablet: '992px',
+    extend: {
+      screens: {
+        tablet: '992px',
+        blg: '1220px',
+      },
+      width: {
+        board: 'calc(100% + 64px)',
+      },
+      height: {
+        board: 'calc(100vh - 64px)',
+      },
     },
-    width: {
-      'board': 'calc(100% + 64px)',
-    },
-    height: {
-      'board': 'calc(100vh - 64px)',
-    },
-
   },
   plugins: [],
 };
-
