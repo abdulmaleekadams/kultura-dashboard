@@ -38,7 +38,7 @@ const DasboardLatestActivities = () => {
                   avatar={
                     <CustomAvatar
                       shape='square'
-                      size={48}
+                      size={'small'}
                       src={item?.company.avatarUrl}
                       name={item?.company.name}
                     />

@@ -4,7 +4,7 @@ import prisma from '@/prisma/client';
 import { Company, Task, TaskStage } from '@/utils/types';
 import { revalidatePath } from 'next/cache';
 
-export const createCompany = async (values: Company) => {
+export const createCompany = async (values: any) => {
   await prisma.company.create({ data: { ...values } });
 };
 
@@ -71,7 +71,7 @@ export const getUsersCount = async () => {
 };
 
 export const createTask = async (
-  values: Task,
+  values: any,
   stageId: string,
   profileId: string
 ) => {

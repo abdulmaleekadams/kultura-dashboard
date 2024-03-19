@@ -55,13 +55,7 @@ export const AccountSettings = ({ opened, setOpened, userId }: Props) => {
         }}
       >
         <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            padding: '16px',
-            backgroundColor: '#fff',
-          }}
+          className='flex items-center justify-between p-4 bg-white'
         >
           <Text strong>Account Settings</Text>
           <Button
@@ -71,9 +65,7 @@ export const AccountSettings = ({ opened, setOpened, userId }: Props) => {
           />
         </div>
         <div
-          style={{
-            padding: '16px',
-          }}
+          className='p-4'
         >
           <Card>
             <Form layout='vertical'>
@@ -81,11 +73,8 @@ export const AccountSettings = ({ opened, setOpened, userId }: Props) => {
                 shape='square'
                 src={avatarUrl}
                 name={getNameInitials(name || '')}
-                style={{
-                  width: 96,
-                  height: 96,
-                  marginBottom: '24px',
-                }}
+                customStyle='w-[96px] h-[96px] mb-[24px]'
+                
               />
               <Form.Item label='Name' name='name'>
                 <Input placeholder='Name' />

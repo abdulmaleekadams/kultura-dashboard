@@ -21,12 +21,6 @@ const IconWrapper = ({
   );
 };
 
-import {
-  BusinessType,
-  CompanySize,
-  Contact,
-  Industry,
-} from '@/graphql/schema.types';
 
 export type TotalCountType = 'companies' | 'contacts' | 'deals';
 
@@ -170,7 +164,7 @@ export const totalCountVariants: {
 
 export const statusOptions: {
   label: string;
-  value: Contact['status'];
+  value: any['status'];
 }[] = [
   {
     label: 'New',
@@ -212,7 +206,7 @@ export const statusOptions: {
 
 export const companySizeOptions: {
   label: string;
-  value: CompanySize;
+  value: any;
 }[] = [
   {
     label: 'Enterprise',
@@ -234,7 +228,7 @@ export const companySizeOptions: {
 
 export const industryOptions: {
   label: string;
-  value: Industry;
+  value: any;
 }[] = [
   { label: 'Aerospace', value: 'AEROSPACE' },
   { label: 'Agriculture', value: 'AGRICULTURE' },
@@ -269,7 +263,7 @@ export const industryOptions: {
 
 export const businessTypeOptions: {
   label: string;
-  value: BusinessType;
+  value: any;
 }[] = [
   {
     label: 'B2B',

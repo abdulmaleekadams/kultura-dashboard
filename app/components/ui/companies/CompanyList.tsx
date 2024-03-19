@@ -133,7 +133,7 @@ const CompanyList = ({
         .includes((value as string).toLowerCase()),
     onFilterDropdownOpenChange: (visible) => {
       if (visible) {
-        setTimeout(() => searchInput.current?.select(), 100);
+        setTimeout(() => searchInput.current, 100);
       }
     },
     render: (text) =>
@@ -154,36 +154,44 @@ const CompanyList = ({
       title: 'Name',
       dataIndex: 'name',
       key: 'name',
-      ...getColumnSearchProps('name'),
+      ...getColumnSearchProps('name') as any,
       render: (name, record) => (
         <Space>
           <CustomAvatar shape='square' name={name} src={record.avatarUrl} />
-          <Text size='xs' className='!whitespace-nowrap'>{name}</Text>
+          <Text size='xs' className='!whitespace-nowrap'>
+            {name}
+          </Text>
         </Space>
       ),
     },
     {
       title: 'Sales Owner',
-      dataIndex: 'dealsAggregate',
-      key: 'dealsAggregate',
+      dataIndex: 'salesOwner',
+      key: 'salesOwner',
       render: (dealsAggregate) => (
-        <Text size='xs' className='!whitespace-nowrap'>{currencyNumber(dealsAggregate?.sum?.value || 0)}</Text>
+        <Text size='xs' className='!whitespace-nowrap'>
+          {currencyNumber(dealsAggregate?.sum?.value || 0)}
+        </Text>
       ),
     },
     {
       title: 'Open deals amount',
-      dataIndex: 'dealsAggregate',
-      key: 'dealsAggregate',
+      dataIndex: 'dealsAmounts',
+      key: 'dealsAmounts',
       render: (dealsAggregate) => (
-        <Text size='xs' className='!whitespace-nowrap'>{currencyNumber(dealsAggregate?.sum?.value || 0)}</Text>
+        <Text size='xs' className='!whitespace-nowrap'>
+          {currencyNumber(dealsAggregate?.sum?.value || 0)}
+        </Text>
       ),
     },
     {
       title: 'Related Contacts',
-      dataIndex: 'dealsAggregate',
-      key: 'dealsAggregate',
+      dataIndex: 'relatedContacts',
+      key: 'relatedContacts',
       render: (dealsAggregate) => (
-        <Text size='xs' className='!whitespace-nowrap'>{currencyNumber(dealsAggregate?.sum?.value || 0)}</Text>
+        <Text size='xs' className='!whitespace-nowrap'>
+          {currencyNumber(dealsAggregate?.sum?.value || 0)}
+        </Text>
       ),
     },
     {
@@ -206,7 +214,7 @@ const CompanyList = ({
             size='small'
             className='flex items-center justify-center !border-red-400 !text-red-400 hover:!border-red-500 hover:!text-red-500 !h-[30px]'
             aria-label='Delete'
-          >
+            >
             <DeleteOutlined />
           </Button>
         </Space>
@@ -218,6 +226,7 @@ const CompanyList = ({
   return (
     <List>
       <Table
+      //@ts-ignore
         columns={columns}
         dataSource={companiesList}
         pagination={{ current: 1, pageSize: 15 }}
