@@ -158,8 +158,16 @@ const CompanyList = ({
       render: (name, record) => (
         <Space>
           <CustomAvatar shape='square' name={name} src={record.avatarUrl} />
-          <Text className='!whitespace-nowrap'>{name}</Text>
+          <Text size='xs' className='!whitespace-nowrap'>{name}</Text>
         </Space>
+      ),
+    },
+    {
+      title: 'Sales Owner',
+      dataIndex: 'dealsAggregate',
+      key: 'dealsAggregate',
+      render: (dealsAggregate) => (
+        <Text size='xs' className='!whitespace-nowrap'>{currencyNumber(dealsAggregate?.sum?.value || 0)}</Text>
       ),
     },
     {
@@ -167,7 +175,15 @@ const CompanyList = ({
       dataIndex: 'dealsAggregate',
       key: 'dealsAggregate',
       render: (dealsAggregate) => (
-        <Text>{currencyNumber(dealsAggregate?.sum?.value || 0)}</Text>
+        <Text size='xs' className='!whitespace-nowrap'>{currencyNumber(dealsAggregate?.sum?.value || 0)}</Text>
+      ),
+    },
+    {
+      title: 'Related Contacts',
+      dataIndex: 'dealsAggregate',
+      key: 'dealsAggregate',
+      render: (dealsAggregate) => (
+        <Text size='xs' className='!whitespace-nowrap'>{currencyNumber(dealsAggregate?.sum?.value || 0)}</Text>
       ),
     },
     {

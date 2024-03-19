@@ -1,10 +1,11 @@
 'use client';
 import { salesOwner } from '@/utils/mockData';
-import { Form, Input, Modal, Select } from 'antd';
+import { Button, Form, Input, Modal, Select, Space } from 'antd';
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import SelectOptionWithAvatar from '../SelectOptionWithAvatar';
-import { createCompany } from '@/app/server/actions';
+import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
+import { createCompany, getAllUsers } from '@/app/server/actions';
 
 const CreateComapnyForm = ({
   openCreateCompanyForm,
@@ -27,6 +28,7 @@ const CreateComapnyForm = ({
 
   const [disableCreateBtn, setDisableCreateBtn] = useState(false);
 
+
   return (
     <Modal
       width={512}
@@ -41,14 +43,13 @@ const CreateComapnyForm = ({
       okButtonProps={{ disabled: disableCreateBtn }}
     >
       <Form
-        form={form}
-        name='control-hooks'
+         name='control-hooks'
         layout='vertical'
         onFinish={onFinish}
       >
         <Form.Item
-          name='companyName'
           label='Company Name'
+          name='name'
           className='font-semibold'
           rules={[{ required: true, message: 'Company name is required' }]}
         >
@@ -62,18 +63,68 @@ const CreateComapnyForm = ({
         >
           <Select
             placeholder='Please select a sales owner'
-            options={salesOwner.map(({ id, name, avatarUrl }) => ({
+            options={salesOwner.map(({ id, name }) => ({
               value: id,
               label: (
                 <SelectOptionWithAvatar
                   name={name}
-                  avatarUrl={avatarUrl}
+                  avatarUrl={name}
                   key={id}
                 />
               ),
             }))}
           />
         </Form.Item>
+
+        <Form.List name='contacts'>
+          {(fields, { add, remove }) => (
+            <>
+              {fields.map(({ key, name, ...restField }) => (
+                <Space
+                  key={key}
+                  style={{ display: 'flex', marginBottom: 8 }}
+                  align='baseline'
+                >
+                  <Form.Item
+                    {...restField}
+                    name={[name, 'name']}
+                    rules={[
+                      {
+                        required: true,
+                        message: 'Please enter a contact name',
+                      },
+                    ]}
+                  >
+                    <Input placeholder='Contact name' />
+                  </Form.Item>
+                  <Form.Item
+                    {...restField}
+                    name={[name, 'email']}
+                    rules={[
+                      {
+                        required: true,
+                        message: 'Please enter your email',
+                      },
+                    ]}
+                  >
+                    <Input placeholder='Contact email' />
+                  </Form.Item>
+                  <MinusCircleOutlined onClick={() => remove(name)} />
+                </Space>
+              ))}
+              <Form.Item>
+                <Button
+                  type='dashed'
+                  onClick={() => add()}
+                  block
+                  icon={<PlusOutlined />}
+                >
+                  Add new contacts
+                </Button>
+              </Form.Item>
+            </>
+          )}
+        </Form.List>
       </Form>
     </Modal>
   );

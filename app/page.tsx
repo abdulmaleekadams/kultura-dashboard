@@ -1,13 +1,11 @@
-// 'use client'
-import { Typography } from "antd";
+'use client'
 
-// const {Paragraph} = Typography
+import { useRouter } from "next/navigation";
+
 
 export default function Home() {
-  return (
-    <main>
-      {/* <Paragraph level={4}>Hello</Paragraph> */}
-      <div>Homepage</div>
-   </main>
-  );
+  const router = useRouter()
+
+  return router.push('/dashboard')
+  
 }

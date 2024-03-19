@@ -1,15 +1,21 @@
 'use server';
 
 import prisma from '@/prisma/client';
-import { Task, TaskStage } from '@/utils/types';
+import { Company, Task, TaskStage } from '@/utils/types';
 import { revalidatePath } from 'next/cache';
 
-export const createCompany = async (values: any) => {
-  console.log(values);
+export const createCompany = async (values: Company) => {
+  await prisma.company.create({ data: { ...values } });
 };
 
 export const deleteCompany = async (id: string) => {
   console.log(id);
+};
+
+export const getCompanyCount = async () => {
+  const totalCompany = await prisma.company.count();
+
+  return totalCompany;
 };
 
 export const createDeal = async (values: any) => {
@@ -44,6 +50,12 @@ export const createUsers = async (
 ) => {
   await prisma.user.createMany({ data });
   revalidatePath('/administration');
+};
+
+export const getAllUsers = async () => {
+  const users = await prisma.user.findMany();
+
+  return users;
 };
 
 export const getUsers = async (skip = 0, take = 10) => {

@@ -55,14 +55,14 @@ model Task {
 model Company {
   id String @id @default(auto()) @map("_id") @db.ObjectId
   name String
-  size CompanySize
-  type BusinessType
+  size CompanySize?
+  type BusinessType?
   industryId String @db.ObjectId
   industry Industry @relation(fields: [industryId], references: [id])
-  revenue Float
-  website String
-  country String
-  dealAmount Float
+  revenue Float?
+  website String?
+  country String?
+  dealAmount Float?
   salesOwnerId String @db.ObjectId
   salesOwner SalesOwner @relation(fields: [salesOwnerId], references: [id])
   contactsId String[] @db.ObjectId
